@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### gitHub ###
-application.yml
+application.yaml
