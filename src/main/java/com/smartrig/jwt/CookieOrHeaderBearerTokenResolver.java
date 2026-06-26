@@ -77,8 +77,16 @@ public class CookieOrHeaderBearerTokenResolver implements BearerTokenResolver {
                     v = v.substring(1, v.length() -1).trim();
                 }
 
+                // 혹시 "Bearer ..." 형태로 저장했다면 접두사 제거 (대소문자 무시)
+                final String BEARER_PREFIX = "bearer ";
+                if (v.length() > BEARER_PREFIX.length()
+                        && v.regionMatches(true, 0, BEARER_PREFIX, 0, BEARER_PREFIX.length())) {
+                    v = v.substring(BEARER_PREFIX.length()).trim();
+                }
 
+                return v.isEmpty() ? null : v;
             }
         }
+        return null;
     }
 }
