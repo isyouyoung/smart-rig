@@ -1,5 +1,6 @@
 package com.smartrig.jwt;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenResolver;
 import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
@@ -43,6 +44,41 @@ public class CookieOrHeaderBearerTokenResolver implements BearerTokenResolver {
 
     @Override
     public String resolve(HttpServletRequest request) {
-        return "";
+        // 1) 쿠키 우선
+        String fromCookie = extractFromCookie(request);
+        if (fromCookie != null && !fromCookie.isEmpty()) {
+            return fromCookie;
+        }
+
+        // 2) 표준 헤더 파서에 위임 (Authorization: Bearer xxx)
+        return delegate.resolve(request);
+    }
+
+    /**
+     * 쿠키에서 토큰 값을 찾아 반환
+     * - 값이 "Bearer xxx" 형태로 저장된 경우 접두사 제거
+     *  - 앞뒤 공백, 따옴표 등을 방어적으로 제거
+     */
+    private String extractFromCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) return null;
+
+        for (Cookie c : cookies) {
+            if (cookieName.equals(c.getName())) {
+                String v = c.getValue();
+                if (v == null) return null;
+
+                // 공백 제거 및 간단한 정규화
+                v = v.trim();
+                if (v.isEmpty()) return null;
+
+                // 일부 프록시/클라이언트가 값에 따옴표를 둘러싸는 경우 방지
+                if ((v.startsWith("\"") && v.endsWith("\"")) || (v.startsWith("'") && v.endsWith("'"))) {
+                    v = v.substring(1, v.length() -1).trim();
+                }
+
+
+            }
+        }
     }
 }
