@@ -1,6 +1,6 @@
 package com.smartrig.auth;
 
-import com.smartrig.dto.userInfoDTO;
+import com.smartrig.dto.UserInfoDTO;
 import com.smartrig.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,4 +18,64 @@ import java.util.Set;
 @Slf4j
 public record AuthInfo(UserInfoDTO userInfoDTO) implements UserDetails {
 
+    /**
+     * 로그인한 사용자의 권한 부여하기
+     */
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        Set<GrantedAuthority> pSet = new HashSet<>();
+
+        String roles = CmmUtil.nvl(userInfoDTO.roles());
+
+        if (!roles.isEmpty()) {
+            for (String role : roles.split(",")) {
+                pSet.add(new SimpleGrantedAuthority(role));
+
+            }
+        }
+
+        return pSet;
+    }
+
+    /**
+     * 사용자의 id를 반환 (unique한 값)
+     */
+    @Override
+    public String getUsername() {
+        return CmmUtil.nvl(userInfoDTO.userId());
+    }
+
+    // 사용자의 password를 반환
+    @Override
+    public String getPassword() {
+        return CmmUtil.nvl(userInfoDTO.password());
+    }
+
+    // 계정 만료 여부 반환
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; // true -> 만료되지 않음
+    }
+
+    // 계정 잠금 여부 반환
+    @Override
+    public boolean isAccountNonLocked() {
+        return true; // true -> 잠금되지 않음
+    }
+
+    // 패스워드의 만료 여부 반환
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true; // true -> 만료되지 않음
+    }
+
+    // 계정 사용 가능 여부 반환
+    @Override
+    public boolean isEnabled() {
+        return true; // true -> 사용 가능
+    }
+
 }
+
+
