@@ -1,7 +1,9 @@
 package com.smartrig.dto;
 
+import com.smartrig.repository.entity.UserInfoEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.smartrig.util.CmmUtil;
+import com.smartrig.util.EncryptUtil;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
