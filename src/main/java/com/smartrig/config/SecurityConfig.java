@@ -1,5 +1,6 @@
 package com.smartrig.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 // Bean
@@ -154,6 +155,10 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout") // 호출 시 토큰 쿠키 제거
                         .deleteCookies(accessTokenName, refreshTokenName)
+                        // 302 강제 리다이렉트를 잠그고, 프론트에게 200 OK 신호만 보냄
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            response.setStatus(HttpServletResponse.SC_OK);
+                        })
                 );
 
         return http.build();
