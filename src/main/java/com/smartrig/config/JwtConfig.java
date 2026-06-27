@@ -16,9 +16,11 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenResolver;
-// 3개 더 있어야함
+// 완전 동일
 
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 @RequiredArgsConstructor
@@ -32,6 +34,17 @@ public class JwtConfig {
      */
     @Value("${jwt.secret.key}")
     private String secret;
+
+    /**
+     * HS256용 SecretKey 빈
+     * 이 키로 JwtEncoder가 토큰에 서명하고 JwtDecoder가 검증합니다
+     * 알고리즘 표기는 "HmacSHA256" (자바 JCE 이름)을 사용합니다.
+     */
+    @Bean
+    public SecretKey jwtSecretKey() {
+        // secret 길이가 짦으면 보안상 취약 및 라이브러리에서 거부될 수 있습니다.
+        return new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+    }
 
     /**
      * JWT 인코더 (발급기)
