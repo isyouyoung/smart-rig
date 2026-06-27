@@ -19,5 +19,5 @@ public enum UserRole {
 
     // ROLE_ADMIN, ROLE_USER 문자열을 저장하는 변수
     // private 이라 외부에서 직접 접근 못하고 getValue() 로만 가져올 수 있음
-    private String value;
+    private final String value;
 }
