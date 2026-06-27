@@ -17,7 +17,10 @@
 
             // 로그아웃
             $("#btnLogout").on("click", function () { // 버튼 클릭했을때, 발생되는 이벤트 생성함(onclick 이벤트와 동일함)
-                location.href = "/user/v1/logout";
+                // location.href = "/user/v1/logout";
+                // 우리 SecurityConfig 에서 로그아웃 URL을 이렇게 설정함
+                // .logoutUrl("/logout") 그래서 아래처럼 바꿈
+                location.href = "/logout";
             })
 
             // 회원정보 상세 조회하기
