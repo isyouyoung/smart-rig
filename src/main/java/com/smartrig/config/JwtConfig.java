@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenResolver;
 // 3개 더 있어야함
 
 import javax.crypto.SecretKey;
@@ -82,7 +83,20 @@ public class JwtConfig {
         return converter;
     }
 
-
-
-
+    /**
+     * BearTokenResolver
+     * 리소스 서버가 요청에서 토큰을 찾을 때의 규칙을 정의합니다
+     * 우선순위 : 1 HttpOnly 쿠키 (Access Token) -> 2 Authorization 헤더(Bearer)
+     * 보안상 쿼리스트링/폼 파라미터로 토큰 전달은 허용하지 않습니다 (Resolver 구현 내부에서 차단).
+     * <p>
+     * 쿠키 전략 주의:
+     * XSS 방지를 위해 HttpOnly 사용
+     * CSRF를 완화하려면 SameSite=Lax/Strict + CSRF 토큰(상황에 따라) 고려.
+     * 크로스 도메인 필요시 SameSite=None + Secure=true 조합 필요.
+     */
+    @Bean
+    public BearerTokenResolver bearerTokenResolver(
+            @Value("${jwt.token.access.name}") String accessTokenName) {
+        return new CookieOrHeaderBearerTokenResolver(accessTokenName);
+    }
 }
