@@ -43,5 +43,12 @@ public class ModelEntity {
     @Column(name = "manufacturer", nullable = false, length = 50)
     private String manufacturer;
 
+    // DB의 model_name(VARCHAR(100) NOT NULL) 컬럼과 매핑된다.
+    // 제품의 모델명(i5-7500, GTX1060 6GB 등)을 저장한다.
+    // nullable = false : NULL 값을 허용하지 않는다.
+    // length = 100 : 최대 100자까지 저장할 수 있다.
+    @Column(name = "model_name", nullable = false, length = 100)
+    private String modelName;
+
 
 }
