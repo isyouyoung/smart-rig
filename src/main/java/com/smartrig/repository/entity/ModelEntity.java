@@ -36,5 +36,12 @@ public class ModelEntity {
     )
     private String itemType;
 
+    // DB의 manufacturer(VARCHAR(50) NOT NULL) 컬럼과 매핑된다.
+    // 제조사(Intel, AMD, NVIDIA 등)를 저장한다.
+    // nullable = false : NULL 값을 허용하지 않는다.
+    // length = 50 : 최대 50자까지 저장할 수 있다.
+    @Column(name = "manufacturer", nullable = false, length = 50)
+    private String manufacturer;
+
 
 }
