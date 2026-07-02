@@ -50,8 +50,12 @@ public class ModelEntity {
     @Column(name = "model_name", nullable = false, length = 100)
     private String modelName;
 
-    // 다음 작성할거
-    // model_number VARCHAR(50) NOT NULL
-
+    // DB의 model_number(VARCHAR(50) NOT NULL) 컬럼과 매핑된다.
+    // 제품의 모델 번호(7500, 1060, 5600X 등)를 저장한다.
+    // 사용자가 제품을 검색할 때 주로 사용되는 정보이다.
+    // nullable = false : NULL 값을 허용하지 않는다.
+    // length = 50 : 최대 50자까지 저장할 수 있다.
+    @Column(name = "model_number", nullable = false, length = 50)
+    private String modelNumber;
 
 }
