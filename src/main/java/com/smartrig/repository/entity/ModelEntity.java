@@ -5,6 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+
+//    DB 컬럼 타입과 Entity 필드 타입은 가능한 한 1:1로 맞춘다.
+//    BIGINT ↔ Long
+//    INT ↔ Integer
+//    VARCHAR ↔ String
 
 @Entity // 이 클래스가 DB와 연결되는 Entity임을 JPA에게 알려준다.
 @Table(name = "MODEL") // MODEL 테이블과 매핑한다.
@@ -20,14 +26,15 @@ public class ModelEntity {
     // JPA가 생성된 번호를 Entity의 modelId에 자동으로 채워준다.
     private Long modelId;
 
-    //    오늘 핵심 한 줄
-//
-//    DB 컬럼 타입과 Entity 필드 타입은 가능한 한 1:1로 맞춘다.
-//
-//    그래서
-//
-//    BIGINT ↔ Long
-//    INT ↔ Integer
-//    VARCHAR ↔ String
+    // DB의 item_type(VARCHAR(10) NOT NULL) 컬럼과 매핑된다.
+    // nullable = false : NULL 값을 허용하지 않는다.
+    // length = 10 : 최대 10자까지 저장할 수 있다.
+    @Column(
+            name = "item_type",
+            nullable = false,
+            length = 10
+    )
+    private String itemType;
+
 
 }
