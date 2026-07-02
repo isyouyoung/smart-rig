@@ -50,5 +50,8 @@ public class ModelEntity {
     @Column(name = "model_name", nullable = false, length = 100)
     private String modelName;
 
+    // 다음 작성할거
+    // model_number VARCHAR(50) NOT NULL
+
 
 }
