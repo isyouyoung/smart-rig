@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
+import java.time.LocalDateTime;
+
 //    DB 컬럼 타입과 Entity 필드 타입은 가능한 한 1:1로 맞춘다.
 //    BIGINT ↔ Long
 //    INT ↔ Integer
@@ -58,11 +60,19 @@ public class ModelEntity {
     @Column(name = "model_number", nullable = false, length = 50)
     private String modelNumber;
 
-    // status CHAR(1) NOT NULL DEFAULT 'Y'
-    // @Column은 컬럼과 매핑하는 정보를 알려준다.
-    // DEFAULT 'Y'는 DB가 값을 자동으로 채워주는 규칙이다.
-    // 기본값은 값이 없을 때만 적용된다.
+    // DB의 status(CHAR(1) NOT NULL DEFAULT 'Y') 컬럼과 매핑된다.
+    // 제품의 사용 여부(Y: 사용, N: 미사용)를 저장한다.
+    // nullable = false : NULL 값을 허용하지 않는다.
+    // length = 1 : 한 글자만 저장할 수 있다.
+    // DEFAULT 'Y'는 DB에서 값이 없을 경우 자동으로 적용된다.
     @Column(name = "status", nullable = false, length = 1)
     private String status;
+
+    // DB의 reg_dt(DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP) 컬럼과 매핑된다.
+    // 데이터가 처음 등록된 날짜와 시간을 저장한다.
+    // nullable = false : NULL 값을 허용하지 않는다.
+    // DEFAULT CURRENT_TIMESTAMP : DB가 저장 시 현재 시간을 자동으로 저장한다.
+    @Column(name = "reg_dt", nullable = false)
+    private LocalDateTime regDt;
 
 }
