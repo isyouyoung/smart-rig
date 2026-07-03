@@ -58,4 +58,11 @@ public class ModelEntity {
     @Column(name = "model_number", nullable = false, length = 50)
     private String modelNumber;
 
+    // status CHAR(1) NOT NULL DEFAULT 'Y'
+    // @Column은 컬럼과 매핑하는 정보를 알려준다.
+    // DEFAULT 'Y'는 DB가 값을 자동으로 채워주는 규칙이다.
+    // 기본값은 값이 없을 때만 적용된다.
+    @Column(name = "status", nullable = false, length = 1)
+    private String status;
+
 }
