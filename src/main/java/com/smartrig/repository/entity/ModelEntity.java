@@ -75,4 +75,14 @@ public class ModelEntity {
     @Column(name = "reg_dt", nullable = false)
     private LocalDateTime regDt;
 
+    // DB의 upd_dt(DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP) 컬럼과 매핑된다.
+    // 데이터가 마지막으로 수정된 날짜와 시간을 저장한다.
+    // nullable = false : NULL 값을 허용하지 않는다.
+    // DEFAULT CURRENT_TIMESTAMP : 최초 저장 시 현재 시간을 자동으로 저장한다.
+    // ON UPDATE CURRENT_TIMESTAMP : 데이터 수정 시 현재 시간으로 자동 갱신된다.
+    @Column(name = "upd_dt", nullable = false)
+    private LocalDateTime updDt;
+
+    // MODEL 테이블 Entity 매핑 완료!!!
+
 }
