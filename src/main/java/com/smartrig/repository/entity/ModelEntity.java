@@ -129,4 +129,32 @@ public class ModelEntity {
         this.modelName = modelName;
     }
 
+    public void setModelId(Long modelId) {
+        this.modelId = modelId;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setModelNumber(String modelNumber) {
+        this.modelNumber = modelNumber;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setRegDt(LocalDateTime regDt) {
+        this.regDt = regDt;
+    }
+
+    public void setUpdDt(LocalDateTime updDt) {
+        this.updDt = updDt;
+    }
+
 }
