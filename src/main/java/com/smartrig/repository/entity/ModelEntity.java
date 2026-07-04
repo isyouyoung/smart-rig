@@ -85,4 +85,9 @@ public class ModelEntity {
 
     // MODEL 테이블 Entity 매핑 완료!!!
 
+
+    public String getModelName() {
+        return modelName;
+    }
+
 }
