@@ -17,6 +17,12 @@ import java.time.LocalDateTime;
 @Entity // 이 클래스가 DB와 연결되는 Entity임을 JPA에게 알려준다.
 @Table(name = "MODEL") // MODEL 테이블과 매핑한다.
 public class ModelEntity {
+
+    // ===== 필드(Field) =====
+    // DB의 각 컬럼과 매핑되는 데이터를 저장한다.
+    // 객체가 생성되면 각 필드에 값이 저장된다.
+    // 아래의 private으로 선언된 변수들이 모두 필드(Field)이다.
+
     // MODEL 테이블의 PRIMARY KEY(model_id)와 연결된다.
     // JPA는 이 값을 기준으로 어떤 데이터를 조회/수정/삭제할지 판단한다.
     // DB의 BIGINT 타입과 매핑된다.
@@ -115,6 +121,12 @@ public class ModelEntity {
 
     public LocalDateTime getUpdDt() {
         return updDt;
+    }
+
+    // modelName 값을 변경하는 Setter 메서드이다.
+    // 매개변수로 전달받은 값을 현재 객체의 modelName 필드에 저장한다.
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 
 }
