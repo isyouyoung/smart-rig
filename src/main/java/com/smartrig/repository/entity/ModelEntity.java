@@ -85,9 +85,36 @@ public class ModelEntity {
 
     // MODEL 테이블 Entity 매핑 완료!!!
 
+    public Long getModelId() {
+        return modelId;
+    }
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
 
     public String getModelName() {
         return modelName;
+    }
+
+    public String getModelNumber() {
+        return modelNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getRegDt() {
+        return regDt;
+    }
+
+    public LocalDateTime getUpdDt() {
+        return updDt;
     }
 
 }
