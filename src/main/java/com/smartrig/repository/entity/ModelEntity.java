@@ -157,4 +157,10 @@ public class ModelEntity {
         this.updDt = updDt;
     }
 
+    // 기본 생성자(Default Constructor)
+    // JPA가 Entity 객체를 생성할 때 사용한다.
+    public ModelEntity() {
+
+    }
+
 }
