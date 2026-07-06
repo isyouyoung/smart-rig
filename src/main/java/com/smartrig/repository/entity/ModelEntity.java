@@ -163,4 +163,10 @@ public class ModelEntity {
 
     }
 
+    // modelName을 전달받아 객체를 생성하는 생성자이다.
+    // 전달받은 modelName 값을 현재 객체의 modelName 필드에 저장한다.
+    public ModelEntity(String modelName) {
+        this.modelName = modelName;
+    }
+
 }
