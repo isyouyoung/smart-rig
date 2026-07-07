@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 // ModelEntity를 관리하며, 기본키(PK) 타입은 Long이다.
 public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
 
+    // modelName으로 MODEL 테이블을 조회한다.
+    // 메서드 이름을 기반으로 Spring Data JPA가 SELECT 쿼리를 자동 생성한다.
     ModelEntity findByModelName(String modelName);
 
 }
