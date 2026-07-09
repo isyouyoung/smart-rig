@@ -3,11 +3,20 @@ package com.smartrig.service.impl;
 import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
 import org.springframework.stereotype.Service;
+import com.smartrig.repository.ModelRepository;
 
 // IModelService를 구현하는 Service 클래스이다.
 // 실제 비즈니스 로직을 작성하는 계층이다.
 @Service
 public class ModelService implements IModelService {
+
+    // DB 접근을 위해 ModelRepository를 주입받는다.
+    private final ModelRepository modelRepository;
+
+    // 생성자를 통해 ModelRepository를 주입받는다.
+    public ModelService(ModelRepository modelRepository) {
+        this.modelRepository = modelRepository;
+    }
 
     // ModelEntity 저장 기능을 구현하는 메서드이다.
     // 실제 DB 저장은 Repository를 통해 수행한다.
