@@ -22,7 +22,7 @@ public class ModelService implements IModelService {
     // 실제 DB 저장은 Repository를 통해 수행한다.
     @Override
     public void saveModel(ModelEntity modelEntity) {
-
+        modelRepository.save(modelEntity);
     }
 
 }
