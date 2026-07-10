@@ -1,5 +1,6 @@
 package com.smartrig.controller;
 
+import com.smartrig.service.IModelService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,5 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/model/v1")
 public class ModelController {
+
+    // 비즈니스 로직 처리를 위해 Service를 주입받는다.
+    private final IModelService modelService;
+
+    // 생성자 주입(Constructor Injection)을 사용한다.
+    public ModelController(IModelService modelService) {
+        this.modelService = modelService;
+    }
 
 }
