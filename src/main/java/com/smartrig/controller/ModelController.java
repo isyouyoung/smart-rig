@@ -1,5 +1,6 @@
 package com.smartrig.controller;
 
+import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,14 @@ public class ModelController {
         this.modelService = modelService;
     }
 
+//    @PostMapping("/saveModel")
+//    public void saveModel() {
+//    }
+
     // Model 저장 요청을 처리하는 API이다.
     @PostMapping("/saveModel")
-    public void saveModel() {
+    public void saveModel(ModelEntity modelEntity) {
+        modelService.saveModel(modelEntity);
     }
 
 }
