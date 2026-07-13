@@ -2,9 +2,12 @@ package com.smartrig.controller;
 
 import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 // Model 관련 요청을 처리하는 Controller이다.
 // 클라이언트의 요청을 받아 Service 계층으로 전달한다.
@@ -27,6 +30,11 @@ public class ModelController {
         // 클라이언트로부터 modelEntity 객체를 매개변수로 받겠다는 뜻
         modelService.saveModel(modelEntity);
         // 전달받은 modelEntity를 Service한태 저장하라고 요청
+    }
+
+    @GetMapping("/getModelList")
+    public List<ModelEntity> getModelList() {
+        return null;
     }
 
 }
