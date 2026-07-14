@@ -27,6 +27,8 @@ public class ModelService implements IModelService {
         modelRepository.save(modelEntity);
     }
 
+    // Model 목록 조회 기능을 구현하는 메서드이다.
+    // 현재는 구현 전 단계이므로 null을 반환한다.
     @Override
     public List<ModelEntity> getModelList() {
         return null;
