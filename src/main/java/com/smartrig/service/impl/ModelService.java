@@ -5,6 +5,8 @@ import com.smartrig.service.IModelService;
 import org.springframework.stereotype.Service;
 import com.smartrig.repository.ModelRepository;
 
+import java.util.List;
+
 // IModelService를 구현하는 Service 클래스이다.
 // 실제 비즈니스 로직을 작성하는 계층이다.
 @Service
@@ -23,6 +25,11 @@ public class ModelService implements IModelService {
     @Override
     public void saveModel(ModelEntity modelEntity) {
         modelRepository.save(modelEntity);
+    }
+
+    @Override
+    public List<ModelEntity> getModelList() {
+        return null;
     }
 
 }
