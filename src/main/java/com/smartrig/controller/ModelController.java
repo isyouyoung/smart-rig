@@ -32,9 +32,14 @@ public class ModelController {
         // 전달받은 modelEntity를 Service한태 저장하라고 요청
     }
 
+    // GET 방식으로 /model/v1/getModelList 주소 요청 시 실행된다.
+    // => 보통 조회 화면 진입시 GET 요청을 보내 목록을 조회한다고 보면 됨
+    // IModelService 설계도에 정의된 getModellist()를 호출하는대
+    // 실제 실행되는 코드는 Override된 메서드임을 잊지말자~!
+    // 조회한 ModelEntity 목록을 클라이언트에게 반환함
     @GetMapping("/getModelList")
     public List<ModelEntity> getModelList() {
-        return null;
+        return modelService.getModelList();
     }
 
 }
