@@ -31,7 +31,7 @@ public class ModelService implements IModelService {
     // 현재는 구현 전 단계이므로 null을 반환한다.
     @Override
     public List<ModelEntity> getModelList() {
-        return null;
+        return modelRepository.findAll();
     }
 
 }
