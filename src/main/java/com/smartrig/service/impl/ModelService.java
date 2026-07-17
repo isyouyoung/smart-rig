@@ -34,4 +34,12 @@ public class ModelService implements IModelService {
         return modelRepository.findAll();
     }
 
+    // modelName으로 특정 Model을 조회하는 기능을 구현하는 메서드이다.
+    // 현재는 구현 전 단계이므로 null을 반환한다.
+    // 실제 조회 로직은 Repository의 findByModelName()을 사용할 예정이다.
+    @Override
+    public ModelEntity getModelByName(String modelName) {
+        return null;
+    }
+
 }
