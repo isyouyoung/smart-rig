@@ -11,6 +11,9 @@ public interface IModelService {
     // 실제 저장 로직은 구현 클래스(ModelService)에서 작성한다.
     void saveModel(ModelEntity modelEntity);
 
-    // Model 목록 조회 기능을 정의
+    // Model 전체 목록 조회 반환타입 => List<ModelEntity>(여러 개)
     List<ModelEntity> getModelList();
+
+    // Model 목록중 하나 조회 반환타입 => ModelEntity(하나)
+    ModelEntity getModelByName(String modelName);
 }
