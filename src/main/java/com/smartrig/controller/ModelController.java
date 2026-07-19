@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -45,8 +46,9 @@ public class ModelController {
     // GET 방식으로 /model/v1/getModelByName 주소 요청 시 실행된다.
     // modelName을 전달받아 해당 Model 하나를 조회한다.
     // 조회 결과를 클라이언트에게 반환한다.
+    // @RequestParam : URL의 파라미터 값을 매개변수에 자동으로 매핑한다.
     @GetMapping("/getModelByName")
-    public ModelEntity getModelByName(String modelName) {
+    public ModelEntity getModelByName(@RequestParam String modelName) {
         return modelService.getModelByName(modelName);
     }
 
