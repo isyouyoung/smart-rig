@@ -129,6 +129,11 @@ public class SecurityConfig {
                         .requestMatchers("/reg/**", "/login/v1/**", "/auth/**")
                         .permitAll()
 
+                        // 모델 조회 테스트용 공개
+                        // 테스트용 임시 추가
+                        .requestMatchers("/model/v1/**")
+                        .permitAll()
+
                         // 그 외 모든 요청은 인증 필요
                         .anyRequest().authenticated()
                 )
