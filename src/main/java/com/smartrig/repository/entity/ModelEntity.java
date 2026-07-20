@@ -29,6 +29,7 @@ public class ModelEntity {
     // Long을 사용하는 이유는 저장 전에는 ID가 없어 null 상태가 될 수 있기 때문이다.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "model_id") // 컬럼 추가 이해하기 쉬움 Java 필드명은 modelId 그대로 사용하지만 DB 컬럼명은 model_id를 사용해라 라는뜻
     // ID는 개발자가 직접 넣지 않는다.
     // save()가 호출되면 DB(MariaDB)의 AUTO_INCREMENT가 번호를 생성하고,
     // JPA가 생성된 번호를 Entity의 modelId에 자동으로 채워준다.
