@@ -57,3 +57,24 @@ public class ModelController {
     }
 
 }
+
+/*
+ * Model API 테스트 완료
+ *
+ * 1. POST 저장 테스트
+ *    - URL : /model/v1/saveModel
+ *    - 결과 : 성공
+ *    - 전달받은 ModelEntity 데이터가 MariaDB MODEL 테이블에 정상 저장됨
+ *
+ * 2. GET 전체 조회 테스트
+ *    - URL : /model/v1/getModelList
+ *    - 결과 : 성공
+ *    - DB에 저장된 MODEL 데이터를 Entity로 조회 후 JSON 응답 확인 완료
+ *
+ * 3. 확인 내용
+ *    - Controller → Service → Repository → Database 흐름 정상 동작 확인
+ *    - JpaRepository.findAll()을 통한 전체 조회 정상 동작 확인
+ *    - POST 저장 후 생성된 model_id 값 정상 증가 확인
+ *
+ * 2026-07-21 Model 저장 및 조회 API 테스트 완료
+ */
