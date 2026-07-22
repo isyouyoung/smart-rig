@@ -71,10 +71,21 @@ public class ModelController {
  *    - 결과 : 성공
  *    - DB에 저장된 MODEL 데이터를 Entity로 조회 후 JSON 응답 확인 완료
  *
- * 3. 확인 내용
+ * 3. GET 단건 조회 테스트 (modelName)
+ *    - URL : /model/v1/getModelByName?modelName=i5-7500
+ *    - 최초 결과 : 500 Internal Server Error 발생
+ *    - 원인 : 동일한 modelName 데이터가 2건 존재하여
+ *             JpaRepository.findByModelName() 조회 시
+ *             NonUniqueResultException 발생
+ *    - 조치 : 중복 데이터를 삭제 후 재조회
+ *    - 결과 : 정상적으로 ModelEntity 1건 조회 확인
+ *
+ * 4. 확인 내용
  *    - Controller → Service → Repository → Database 흐름 정상 동작 확인
  *    - JpaRepository.findAll()을 통한 전체 조회 정상 동작 확인
+ *    - JpaRepository.findByModelName() 동작 방식 이해
+ *    - 중복 데이터 조회 시 NonUniqueResultException 발생 원인 확인
  *    - POST 저장 후 생성된 model_id 값 정상 증가 확인
  *
- * 2026-07-21 Model 저장 및 조회 API 테스트 완료
+ * 2026-07-22 Model 저장 및 조회 API 테스트 완료
  */
