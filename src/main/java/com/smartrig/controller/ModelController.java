@@ -56,6 +56,16 @@ public class ModelController {
         return modelService.getModelByName(modelName);
     }
 
+    // GET 방식으로 /model/v1/getModelById 주소 요청 시 실행된다.
+    // modelId(PK)를 전달받아 해당 Model 하나를 조회한다.
+    // PK는 중복되지 않으므로 항상 하나의 데이터만 조회된다.
+    // 존재하지 않는 경우 null을 반환한다.
+    // 조회 결과를 클라이언트에게 반환한다.
+    @GetMapping("/getModelById")
+    public ModelEntity getModelById(@RequestParam Long modelId) {
+        return modelService.getModelById(modelId);
+    }
+
 }
 
 /*
@@ -86,6 +96,13 @@ public class ModelController {
  *    - JpaRepository.findByModelName() 동작 방식 이해
  *    - 중복 데이터 조회 시 NonUniqueResultException 발생 원인 확인
  *    - POST 저장 후 생성된 model_id 값 정상 증가 확인
+ *
+ * 5. GET 단건 조회 테스트 (modelId PK)
+       - URL : /model/v1/getModelById?modelId=1
+       - 결과 : 성공
+       - JpaRepository.findById()를 사용하여 PK 기준 조회 확인
+       - Optional<ModelEntity)를 orElse(null)로 처리 후 정상 반환 확인
+       - Controller → Service → Repository → Database 흐름 정상 동작 확인
  *
  * 2026-07-22 Model 저장 및 조회 API 테스트 완료
  */
