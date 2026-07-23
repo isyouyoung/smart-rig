@@ -66,5 +66,10 @@ public class ModelService implements IModelService {
         return modelRepository.findById(modelId).orElse(null);
     }
 
+    // 주석 설명 추가 예정
+    @Override
+    public void deleteModelById(Long modelId) {
+        modelRepository.deleteById(modelId);
+    }
 
 }
