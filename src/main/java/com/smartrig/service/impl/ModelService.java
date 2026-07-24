@@ -75,4 +75,26 @@ public class ModelService implements IModelService {
         modelRepository.deleteById(modelId);
     }
 
+    // ModelEntity 정보를 수정하는 기능을 구현하는 메서드이다.
+    // JpaRepository가 기본으로 제공하는 save()를 사용하여 DB 데이터를 수정한다.
+    // save()는 modelId(PK)가 존재하면 새로운 데이터를 추가하지 않고
+    // 기존 데이터를 UPDATE 한다.
+    // 따라서 수정할 데이터가 담긴 ModelEntity 객체를 전달받아 수정한다.
+    // 추가 설명
+    // JpaRepository의 save()는 저장(INSERT)과 수정(UPDATE)을 모두 담당하는 메서드이다.
+    //
+    // ModelEntity의 modelId(PK)가 없으면 새로운 데이터로 판단하여 INSERT를 수행한다.
+    // ModelEntity의 modelId(PK)가 이미 존재하면 기존 데이터를 찾아 UPDATE를 수행한다.
+    //
+    // 즉,
+    // modelId == null        → INSERT
+    // modelId가 존재함      → UPDATE
+    //
+    // 최종적으로 Service에서는 전달받은 ModelEntity를 저장하거나 수정하도록
+    // Repository에게 요청한다.
+    @Override
+    public void updateModel(ModelEntity modelEntity) {
+        modelRepository.save(modelEntity);
+    }
+
 }
