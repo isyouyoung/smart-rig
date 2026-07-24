@@ -68,7 +68,7 @@ public class ModelService implements IModelService {
 
     // modelId(PK)를 이용하여 특정 Model을 삭제하는 기능을 구현하는 메서드이다.
     // JpaRepository가 기본으로 제공하는 deleteById()를 사용하여
-    // PK(modelId)를 기준으로 DB의 데이터를 삭제한다.
+    // DB에서 PK(modelId)를 기준으로 해당 데이터를 삭제한다.
     // deleteById()는 삭제만 수행하므로 반환값이 없다.
     @Override
     public void deleteModelById(Long modelId) {
