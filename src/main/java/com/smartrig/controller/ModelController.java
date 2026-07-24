@@ -101,11 +101,21 @@ public class ModelController {
  *    - POST 저장 후 생성된 model_id 값 정상 증가 확인
  *
  * 5. GET 단건 조회 테스트 (modelId PK)
-       - URL : /model/v1/getModelById?modelId=1
-       - 결과 : 성공
-       - JpaRepository.findById()를 사용하여 PK 기준 조회 확인
-       - Optional<ModelEntity)를 orElse(null)로 처리 후 정상 반환 확인
-       - Controller → Service → Repository → Database 흐름 정상 동작 확인
+ *    - URL : /model/v1/getModelById?modelId=1
+ *    - 결과 : 성공
+ *    - JpaRepository.findById()를 사용하여 PK 기준 조회 확인
+ *    - Optional<ModelEntity>를 orElse(null)로 처리 후 정상 반환 확인
+ *    - Controller → Service → Repository → Database 흐름 정상 동작 확인
  *
- * 2026-07-22 Model 저장 및 조회 API 테스트 완료
+ * 6. DELETE 단건 삭제 테스트 (modelId PK)
+ *    - URL : /model/v1/deleteModelById?modelId=1
+ *    - DELETE 요청이 Controller → Service → Repository까지 정상 호출됨
+ *    - JpaRepository.deleteById()가 정상 실행되는 것 확인
+ *    - MODEL 테이블 삭제 시도 확인
+ *    - STOCK 테이블에서 해당 model_id를 Foreign Key(FK)로 참조하고 있어
+ *      DB에서 삭제를 제한하는 것 확인
+ *    - 삭제 기능은 정상 구현되었으며, 삭제 실패 원인은
+ *      DB의 Foreign Key 제약조건 때문임을 확인
+ *
+ * 2026-07-22 Model 저장, 조회, 삭제 API 테스트 완료
  */
