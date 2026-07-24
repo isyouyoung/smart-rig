@@ -2,12 +2,7 @@ package com.smartrig.controller;
 
 import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -64,6 +59,14 @@ public class ModelController {
     @GetMapping("/getModelById")
     public ModelEntity getModelById(@RequestParam Long modelId) {
         return modelService.getModelById(modelId);
+    }
+
+    // DELETE 방식으로 /model/v1/deleteModelById 주소 요청 시 실행된다.
+    // modelId(PK)를 전달받아 해당 Model 하나를 삭제한다.
+    // PK는 중복되지 않으므로 하나의 데이터만 삭제된다.
+    @DeleteMapping("/deleteModelById")
+    public void deleteModelById(@RequestParam Long modelId) {
+        modelService.deleteModelById(modelId);
     }
 
 }
