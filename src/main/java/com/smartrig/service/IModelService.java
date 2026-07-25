@@ -1,5 +1,6 @@
 package com.smartrig.service;
 
+import com.smartrig.dto.ModelResponseDTO;
 import com.smartrig.repository.entity.ModelEntity;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface IModelService {
     void saveModel(ModelEntity modelEntity);
 
     // Model 전체 목록 조회 반환타입 => List<ModelEntity>(여러 개)
-    List<ModelEntity> getModelList();
+    List<ModelResponseDTO> getModelList();
 
     // Model 목록중 하나 조회 반환타입 => ModelEntity(하나)
     ModelEntity getModelByName(String modelName);

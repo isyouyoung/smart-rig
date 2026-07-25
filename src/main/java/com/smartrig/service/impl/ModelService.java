@@ -4,6 +4,8 @@ import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
 import org.springframework.stereotype.Service;
 import com.smartrig.repository.ModelRepository;
+import com.smartrig.dto.ModelResponseDTO;
+import com.smartrig.mapper.ModelMapper;
 
 import java.util.List;
 
@@ -30,8 +32,12 @@ public class ModelService implements IModelService {
     // Model 목록 조회 기능을 구현하는 메서드이다.
     // 현재는 구현 전 단계이므로 null을 반환한다.
     @Override
-    public List<ModelEntity> getModelList() {
-        return modelRepository.findAll();
+    public List<ModelResponseDTO> getModelList() {
+
+        return modelRepository.findAll()
+                .stream()
+                .map(ModelMapper::toDTO)
+                .toList();
     }
 
     // modelName으로 특정 Model을 조회하는 기능을 구현하는 메서드이다.

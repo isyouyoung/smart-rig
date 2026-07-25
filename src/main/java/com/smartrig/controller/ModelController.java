@@ -1,6 +1,7 @@
 package com.smartrig.controller;
 
 import com.smartrig.dto.ModelCreateRequestDTO;
+import com.smartrig.dto.ModelResponseDTO;
 import com.smartrig.mapper.ModelMapper;
 import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
@@ -38,8 +39,10 @@ public class ModelController {
     // IModelService 설계도에 정의된 getModellist()를 호출하는대
     // 실제 실행되는 코드는 Override된 메서드임을 잊지말자~!
     // 조회한 ModelEntity 목록을 클라이언트에게 반환함
+    // DTO로 변환 완료
     @GetMapping("/getModelList")
-    public List<ModelEntity> getModelList() {
+    public List<ModelResponseDTO> getModelList() {
+
         return modelService.getModelList();
     }
 
