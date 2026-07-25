@@ -45,11 +45,8 @@ public class ModelService implements IModelService {
     @Override
     public ModelResponseDTO getModelByName(String modelName) {
 
-        ModelEntity entity = modelRepository.findByModelName(modelName);
-
-        if(entity == null){
-            throw new RuntimeException("해당 모델이 없습니다.");
-        }
+        ModelEntity entity = modelRepository.findByModelName(modelName)
+                .orElseThrow(() -> new RuntimeException("해당 모델이 없습니다."));
 
         return ModelMapper.toDTO(entity);
     }
