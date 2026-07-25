@@ -1,5 +1,7 @@
 package com.smartrig.controller;
 
+import com.smartrig.dto.ModelCreateRequestDTO;
+import com.smartrig.mapper.ModelMapper;
 import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +25,12 @@ public class ModelController {
     // Model 저장 요청을 처리하는 API이다.
     @PostMapping("/saveModel")
     // 위 코드에 RequestMapping을 기본주소에 추가로 /model/v1/saveModel 가 됨
-    public void saveModel(@RequestBody ModelEntity modelEntity) {
-        // 클라이언트로부터 modelEntity 객체를 매개변수로 받겠다는 뜻
+    public void saveModel(@RequestBody ModelCreateRequestDTO dto) {
 
-        System.out.println(modelEntity);
+        ModelEntity entity = ModelMapper.toEntity(dto);
 
-        modelService.saveModel(modelEntity);
-        // 전달받은 modelEntity를 Service한태 저장하라고 요청
+        modelService.saveModel(entity);
+        // Mapper를 통해 변환된 Entity를 Service 계층에 전달하여 저장 요청
     }
 
     // GET 방식으로 /model/v1/getModelList 주소 요청 시 실행된다.
@@ -83,10 +84,12 @@ public class ModelController {
 /*
  * Model API 테스트 완료
  *
- * 1. POST 저장 테스트
- *    - URL : /model/v1/saveModel
- *    - 결과 : 성공
- *    - 전달받은 ModelEntity 데이터가 MariaDB MODEL 테이블에 정상 저장됨
+     1. POST 저장 테스트
+       - URL : /model/v1/saveModel
+       - 결과 : 성공
+       - 전달받은 ModelCreateRequestDTO 데이터를
+         ModelMapper를 통해 ModelEntity로 변환 후
+         MariaDB MODEL 테이블에 정상 저장 확인
  *
  * 2. GET 전체 조회 테스트
  *    - URL : /model/v1/getModelList

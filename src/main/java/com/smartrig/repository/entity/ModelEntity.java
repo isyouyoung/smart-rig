@@ -6,17 +6,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
-
-import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 //    DB 컬럼 타입과 Entity 필드 타입은 가능한 한 1:1로 맞춘다.
 //    BIGINT ↔ Long
 //    INT ↔ Integer
 //    VARCHAR ↔ String
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity // 이 클래스가 DB와 연결되는 Entity임을 JPA에게 알려준다.
 @Table(name = "MODEL") // MODEL 테이블과 매핑한다.
-public class ModelEntity {
+public class ModelEntity extends BaseEntity {
 
     // ===== 필드(Field) =====
     // DB의 각 컬럼과 매핑되는 데이터를 저장한다.
@@ -73,25 +78,9 @@ public class ModelEntity {
     // nullable = false : NULL 값을 허용하지 않는다.
     // length = 1 : 한 글자만 저장할 수 있다.
     // DEFAULT 'Y'는 DB에서 값이 없을 경우 자동으로 적용된다.
+    @Builder.Default
     @Column(name = "status", nullable = false, length = 1)
-    private String status;
-
-    // DB의 reg_dt(DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP) 컬럼과 매핑된다.
-    // 데이터가 처음 등록된 날짜와 시간을 저장한다.
-    // nullable = false : NULL 값을 허용하지 않는다.
-    // DEFAULT CURRENT_TIMESTAMP : DB가 저장 시 현재 시간을 자동으로 저장한다.
-    @Column(name = "reg_dt", nullable = false)
-    private LocalDateTime regDt;
-
-    // DB의 upd_dt(DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP) 컬럼과 매핑된다.
-    // 데이터가 마지막으로 수정된 날짜와 시간을 저장한다.
-    // nullable = false : NULL 값을 허용하지 않는다.
-    // DEFAULT CURRENT_TIMESTAMP : 최초 저장 시 현재 시간을 자동으로 저장한다.
-    // ON UPDATE CURRENT_TIMESTAMP : 데이터 수정 시 현재 시간으로 자동 갱신된다.
-    @Column(name = "upd_dt", nullable = false)
-    private LocalDateTime updDt;
-
-    // MODEL 테이블 Entity 매핑 완료!!!
+    private String status = "Y";
 
     public Long getModelId() {
         return modelId;
@@ -115,60 +104,6 @@ public class ModelEntity {
 
     public String getStatus() {
         return status;
-    }
-
-    public LocalDateTime getRegDt() {
-        return regDt;
-    }
-
-    public LocalDateTime getUpdDt() {
-        return updDt;
-    }
-
-    // modelName 값을 변경하는 Setter 메서드이다.
-    // 매개변수로 전달받은 값을 현재 객체의 modelName 필드에 저장한다.
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
-    }
-
-    public void setModelId(Long modelId) {
-        this.modelId = modelId;
-    }
-
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public void setModelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setRegDt(LocalDateTime regDt) {
-        this.regDt = regDt;
-    }
-
-    public void setUpdDt(LocalDateTime updDt) {
-        this.updDt = updDt;
-    }
-
-    // 기본 생성자(Default Constructor)
-    // JPA가 Entity 객체를 생성할 때 사용한다.
-    public ModelEntity() {
-
-    }
-
-    // modelName을 전달받아 객체를 생성하는 생성자이다.
-    // 전달받은 modelName 값을 현재 객체의 modelName 필드에 저장한다.
-    public ModelEntity(String modelName) {
-        this.modelName = modelName;
     }
 
 }
