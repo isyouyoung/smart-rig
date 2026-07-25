@@ -1,17 +1,17 @@
 package com.smartrig.service;
 
+import com.smartrig.dto.ModelCreateRequestDTO;
 import com.smartrig.dto.ModelResponseDTO;
 import com.smartrig.dto.ModelUpdateRequestDTO;
-import com.smartrig.repository.entity.ModelEntity;
 
 import java.util.List;
 
 // Model 관련 비즈니스 로직을 정의하는 Service 인터페이스이다.
 public interface IModelService {
 
-    // ModelEntity 객체를 저장하기 위한 메서드이다.
-    // 실제 저장 로직은 구현 클래스(ModelService)에서 작성한다.
-    void saveModel(ModelEntity modelEntity);
+    // Model 생성 요청 DTO를 받아 DB에 저장한다.
+    // 저장 완료 후 ResponseDTO 형태로 반환한다.
+    ModelResponseDTO saveModel(ModelCreateRequestDTO dto);
 
     // Model 전체 목록 조회 반환타입 => List<ModelEntity>(여러 개)
     List<ModelResponseDTO> getModelList();
@@ -25,6 +25,5 @@ public interface IModelService {
     // modelId(PK)를 이용하여 특정 Model을 삭제한다.
     void deleteModelById(Long modelId);
 
-    void updateModel(ModelUpdateRequestDTO dto);
-
+    ModelResponseDTO updateModel(ModelUpdateRequestDTO dto);
 }

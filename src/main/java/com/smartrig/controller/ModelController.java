@@ -3,8 +3,6 @@ package com.smartrig.controller;
 import com.smartrig.dto.ModelCreateRequestDTO;
 import com.smartrig.dto.ModelResponseDTO;
 import com.smartrig.dto.ModelUpdateRequestDTO;
-import com.smartrig.mapper.ModelMapper;
-import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +25,9 @@ public class ModelController {
     // Model 저장 요청을 처리하는 API이다.
     @PostMapping("/saveModel")
     // 위 코드에 RequestMapping을 기본주소에 추가로 /model/v1/saveModel 가 됨
-    public void saveModel(@RequestBody ModelCreateRequestDTO dto) {
+    public ModelResponseDTO saveModel(@RequestBody ModelCreateRequestDTO dto) {
 
-        ModelEntity entity = ModelMapper.toEntity(dto);
-
-        modelService.saveModel(entity);
-        // Mapper를 통해 변환된 Entity를 Service 계층에 전달하여 저장 요청
+        return modelService.saveModel(dto);
     }
 
     // GET 방식으로 /model/v1/getModelList 주소 요청 시 실행된다.
@@ -73,13 +68,13 @@ public class ModelController {
         modelService.deleteModelById(modelId);
     }
 
-    // PUT 방식으로 /model/v1/updateModel 주소 요청 시 실행된다.
-    // 수정할 ModelEntity 정보를 전달받아 해당 Model 데이터를 수정한다.
-    // 수정할 데이터는 JSON 형태로 RequestBody를 통해 전달받는다.
-    // Service 계층에 수정을 요청한다.
+    // PUT 방식으로 /model/v1/updateModel 요청 시 실행된다.
+    // ModelUpdateRequestDTO를 전달받아 Service 계층에 수정 요청한다.
+    // 수정 완료 후 변경된 Model 정보를 ModelResponseDTO로 반환한다.
     @PutMapping("/updateModel")
-    public void updateModel(@RequestBody ModelUpdateRequestDTO dto) {
-        modelService.updateModel(dto);
+    public ModelResponseDTO updateModel(@RequestBody ModelUpdateRequestDTO dto) {
+
+        return modelService.updateModel(dto);
     }
 
 }

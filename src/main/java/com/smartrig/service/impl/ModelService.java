@@ -1,5 +1,6 @@
 package com.smartrig.service.impl;
 
+import com.smartrig.dto.ModelCreateRequestDTO;
 import com.smartrig.dto.ModelUpdateRequestDTO;
 import com.smartrig.exception.ModelNotFoundException;
 import com.smartrig.repository.entity.ModelEntity;
@@ -25,11 +26,20 @@ public class ModelService implements IModelService {
         this.modelRepository = modelRepository;
     }
 
-    // ModelEntity 저장 기능을 구현하는 메서드이다.
-    // 실제 DB 저장은 Repository를 통해 수행한다.
+    // Model 생성 기능을 구현하는 메서드이다.
+    // Controller에서 전달받은 CreateDTO를 Entity로 변환 후 저장한다.
+    // 저장된 Entity는 ResponseDTO로 변환하여 반환한다.
+    @Transactional
     @Override
-    public void saveModel(ModelEntity modelEntity) {
-        modelRepository.save(modelEntity);
+    public ModelResponseDTO saveModel(ModelCreateRequestDTO dto) {
+        // 1. DTO -> Entity 변환
+        ModelEntity entity = ModelMapper.toEntity(dto);
+
+        // 2. DB 저장 (저장된 객체에는 PK, 생성일자 등이 포함되어 돌아옴)
+        ModelEntity savedEntity = modelRepository.save(entity);
+
+        // 3. Entity -> DTO 변환 후 반환
+        return ModelMapper.toDTO(savedEntity);
     }
 
     // Model 목록 조회 기능을 구현하는 메서드이다.
@@ -74,10 +84,13 @@ public class ModelService implements IModelService {
 
     @Transactional
     @Override
-    public void updateModel(ModelUpdateRequestDTO requestDTO) {
+    public ModelResponseDTO updateModel(ModelUpdateRequestDTO requestDTO) {
 
         ModelEntity entity = modelRepository.findById(requestDTO.modelId())
-                .orElseThrow(() -> new ModelNotFoundException("수정할 모델이 존재하지 않습니다. ID: " + requestDTO.modelId()));
+                .orElseThrow(() ->
+                        new ModelNotFoundException("수정할 모델이 존재하지 않습니다. ID: " + requestDTO.modelId()
+                        )
+                );
 
         entity.update(
                 requestDTO.itemType(),
@@ -86,6 +99,8 @@ public class ModelService implements IModelService {
                 requestDTO.modelNumber(),
                 requestDTO.status()
         );
+
+        return ModelMapper.toDTO(entity);
     }
 
 }
