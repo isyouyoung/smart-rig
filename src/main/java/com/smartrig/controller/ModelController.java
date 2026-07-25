@@ -61,7 +61,7 @@ public class ModelController {
     // 존재하지 않는 경우 null을 반환한다.
     // 조회 결과를 클라이언트에게 반환한다.
     @GetMapping("/getModelById")
-    public ModelEntity getModelById(@RequestParam Long modelId) {
+    public ModelResponseDTO getModelById(@RequestParam Long modelId) {
         return modelService.getModelById(modelId);
     }
 

@@ -19,7 +19,7 @@ public interface IModelService {
     ModelEntity getModelByName(String modelName);
 
     // Model PK(modelId)로 특정 Model 하나를 조회한다.
-    ModelEntity getModelById(Long modelId);
+    ModelResponseDTO getModelById(Long modelId);
 
     // modelId(PK)를 이용하여 특정 Model을 삭제한다.
     void deleteModelById(Long modelId);
