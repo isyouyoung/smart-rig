@@ -1,6 +1,7 @@
 package com.smartrig.service;
 
 import com.smartrig.dto.ModelResponseDTO;
+import com.smartrig.dto.ModelUpdateRequestDTO;
 import com.smartrig.repository.entity.ModelEntity;
 
 import java.util.List;
@@ -24,6 +25,6 @@ public interface IModelService {
     // modelId(PK)를 이용하여 특정 Model을 삭제한다.
     void deleteModelById(Long modelId);
 
-    void updateModel(ModelEntity modelEntity);
+    void updateModel(ModelUpdateRequestDTO dto);
 
 }

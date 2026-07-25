@@ -1,5 +1,6 @@
 package com.smartrig.service.impl;
 
+import com.smartrig.dto.ModelUpdateRequestDTO;
 import com.smartrig.exception.ModelNotFoundException;
 import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
@@ -88,8 +89,18 @@ public class ModelService implements IModelService {
     // 최종적으로 Service에서는 전달받은 ModelEntity를 저장하거나 수정하도록
     // Repository에게 요청한다.
     @Override
-    public void updateModel(ModelEntity modelEntity) {
-        modelRepository.save(modelEntity);
+    public void updateModel(ModelUpdateRequestDTO dto) {
+
+        ModelEntity entity = modelRepository.findById(dto.modelId())
+                .orElseThrow(() -> new ModelNotFoundException("해당 모델이 없습니다."));
+
+        entity.update(
+                dto.itemType(),
+                dto.manufacturer(),
+                dto.modelName(),
+                dto.modelNumber(),
+                dto.status()
+        );
     }
 
 }
