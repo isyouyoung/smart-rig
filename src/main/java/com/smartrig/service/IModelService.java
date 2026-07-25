@@ -16,7 +16,7 @@ public interface IModelService {
     List<ModelResponseDTO> getModelList();
 
     // Model 목록중 하나 조회 반환타입 => ModelEntity(하나)
-    ModelEntity getModelByName(String modelName);
+    ModelResponseDTO getModelByName(String modelName);
 
     // Model PK(modelId)로 특정 Model 하나를 조회한다.
     ModelResponseDTO getModelById(Long modelId);

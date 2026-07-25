@@ -43,8 +43,15 @@ public class ModelService implements IModelService {
     // modelName으로 특정 Model을 조회하는 기능을 구현하는 메서드이다.
     // 실제 DB 조회는 Repository의 findByModelName()을 통해 수행한다.
     @Override
-    public ModelEntity getModelByName(String modelName) {
-        return modelRepository.findByModelName(modelName);
+    public ModelResponseDTO getModelByName(String modelName) {
+
+        ModelEntity entity = modelRepository.findByModelName(modelName);
+
+        if(entity == null){
+            throw new RuntimeException("해당 모델이 없습니다.");
+        }
+
+        return ModelMapper.toDTO(entity);
     }
 
     @Override

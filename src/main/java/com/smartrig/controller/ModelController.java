@@ -51,14 +51,13 @@ public class ModelController {
     // 조회 결과를 클라이언트에게 반환한다.
     // @RequestParam : URL의 파라미터 값을 매개변수에 자동으로 매핑한다.
     @GetMapping("/getModelByName")
-    public ModelEntity getModelByName(@RequestParam String modelName) {
+    public ModelResponseDTO getModelByName(@RequestParam String modelName) {
         return modelService.getModelByName(modelName);
     }
 
     // GET 방식으로 /model/v1/getModelById 주소 요청 시 실행된다.
     // modelId(PK)를 전달받아 해당 Model 하나를 조회한다.
     // PK는 중복되지 않으므로 항상 하나의 데이터만 조회된다.
-    // 존재하지 않는 경우 null을 반환한다.
     // 조회 결과를 클라이언트에게 반환한다.
     @GetMapping("/getModelById")
     public ModelResponseDTO getModelById(@RequestParam Long modelId) {
