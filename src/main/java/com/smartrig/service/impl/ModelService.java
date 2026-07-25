@@ -1,5 +1,6 @@
 package com.smartrig.service.impl;
 
+import com.smartrig.exception.ModelNotFoundException;
 import com.smartrig.repository.entity.ModelEntity;
 import com.smartrig.service.IModelService;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,7 @@ public class ModelService implements IModelService {
     public ModelResponseDTO getModelByName(String modelName) {
 
         ModelEntity entity = modelRepository.findByModelName(modelName)
-                .orElseThrow(() -> new RuntimeException("해당 모델이 없습니다."));
+                .orElseThrow(() -> new ModelNotFoundException("해당 모델이 없습니다."));
 
         return ModelMapper.toDTO(entity);
     }
@@ -55,7 +56,7 @@ public class ModelService implements IModelService {
     public ModelResponseDTO getModelById(Long modelId) {
 
         ModelEntity entity = modelRepository.findById(modelId)
-                .orElseThrow(() -> new RuntimeException("해당 모델이 없습니다."));
+                .orElseThrow(() -> new ModelNotFoundException("해당 모델이 없습니다."));
 
         return ModelMapper.toDTO(entity);
     }
