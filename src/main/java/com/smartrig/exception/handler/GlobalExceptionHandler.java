@@ -1,6 +1,7 @@
 package com.smartrig.exception.handler;
 
 import com.smartrig.exception.ModelNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,6 +19,17 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponseDTO(
                         HttpStatus.NOT_FOUND.value(),
                         e.getMessage()
+                ));
+    }
+
+    // DB 제약조건 위반 예외 처리 (400 Bad Request)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponseDTO> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponseDTO(
+                        HttpStatus.BAD_REQUEST.value(),
+                        "잘못된 요청입니다. 데이터 제약 조건을 위반했습니다."
                 ));
     }
 
