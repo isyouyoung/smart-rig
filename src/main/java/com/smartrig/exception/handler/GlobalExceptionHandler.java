@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.smartrig.dto.ErrorResponseDTO;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestControllerAdvice // "모든 Controller에서 발생하는 예외를 내가 처리할게." 라고 Spring에게 알려주는 어노테이션이다.
 public class GlobalExceptionHandler {
 
@@ -19,7 +22,8 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponseDTO(
                         HttpStatus.NOT_FOUND.value(),
-                        e.getMessage()
+                        e.getMessage(),
+                        null
                 ));
     }
 
@@ -30,7 +34,8 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponseDTO(
                         HttpStatus.BAD_REQUEST.value(),
-                        "잘못된 요청입니다. 데이터 제약 조건을 위반했습니다."
+                        "잘못된 요청입니다. 데이터 제약 조건을 위반했습니다.",
+                        null
                 ));
     }
 
@@ -38,15 +43,23 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleValidationException(
             MethodArgumentNotValidException e) {
 
-        String message = e.getBindingResult()
-                .getFieldError()
-                .getDefaultMessage();
+        Map<String, String> errors = new HashMap<>();
+
+        e.getBindingResult()
+                .getFieldErrors()
+                .forEach(error ->
+                        errors.put(
+                                error.getField(),
+                                error.getDefaultMessage()
+                        )
+                );
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponseDTO(
                         HttpStatus.BAD_REQUEST.value(),
-                        message
+                        "입력값을 확인해주세요.",
+                        errors
                 ));
     }
 
