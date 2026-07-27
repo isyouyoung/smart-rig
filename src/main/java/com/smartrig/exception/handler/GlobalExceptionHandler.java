@@ -4,6 +4,7 @@ import com.smartrig.exception.ModelNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.smartrig.dto.ErrorResponseDTO;
@@ -30,6 +31,22 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponseDTO(
                         HttpStatus.BAD_REQUEST.value(),
                         "잘못된 요청입니다. 데이터 제약 조건을 위반했습니다."
+                ));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponseDTO> handleValidationException(
+            MethodArgumentNotValidException e) {
+
+        String message = e.getBindingResult()
+                .getFieldError()
+                .getDefaultMessage();
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponseDTO(
+                        HttpStatus.BAD_REQUEST.value(),
+                        message
                 ));
     }
 

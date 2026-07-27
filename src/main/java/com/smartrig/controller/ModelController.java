@@ -4,6 +4,7 @@ import com.smartrig.dto.ModelCreateRequestDTO;
 import com.smartrig.dto.ModelResponseDTO;
 import com.smartrig.dto.ModelUpdateRequestDTO;
 import com.smartrig.service.IModelService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class ModelController {
     // Model 저장 요청을 처리하는 API이다.
     @PostMapping("/saveModel")
     // 위 코드에 RequestMapping을 기본주소에 추가로 /model/v1/saveModel 가 됨
-    public ModelResponseDTO saveModel(@RequestBody ModelCreateRequestDTO dto) {
+    public ModelResponseDTO saveModel(
+            @Valid @RequestBody ModelCreateRequestDTO dto) {
 
         return modelService.saveModel(dto);
     }
@@ -72,7 +74,7 @@ public class ModelController {
     // ModelUpdateRequestDTO를 전달받아 Service 계층에 수정 요청한다.
     // 수정 완료 후 변경된 Model 정보를 ModelResponseDTO로 반환한다.
     @PutMapping("/updateModel")
-    public ModelResponseDTO updateModel(@RequestBody ModelUpdateRequestDTO dto) {
+    public ModelResponseDTO updateModel(@Valid @RequestBody ModelUpdateRequestDTO dto) {
 
         return modelService.updateModel(dto);
     }
