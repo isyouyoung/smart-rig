@@ -73,13 +73,19 @@ public class ModelService implements IModelService {
         return ModelMapper.toDTO(entity);
     }
 
-    // modelId(PK)를 이용하여 특정 Model을 삭제하는 기능을 구현하는 메서드이다.
-    // JpaRepository가 기본으로 제공하는 deleteById()를 사용하여
-    // DB에서 PK(modelId)를 기준으로 해당 데이터를 삭제한다.
-    // deleteById()는 삭제만 수행하므로 반환값이 없다.
+    // modelId(PK)로 삭제할 Model을 먼저 조회한다.
+    // 존재하지 않으면 ModelNotFoundException을 발생시킨다.
+    // 조회된 Entity를 Repository의 delete()로 삭제한다.
+    @Transactional
     @Override
     public void deleteModelById(Long modelId) {
-        modelRepository.deleteById(modelId);
+
+        ModelEntity entity = modelRepository.findById(modelId)
+                .orElseThrow(() ->
+                        new ModelNotFoundException("삭제할 모델이 존재하지 않습니다. ID: " + modelId)
+                );
+
+        modelRepository.delete(entity);
     }
 
     @Transactional
