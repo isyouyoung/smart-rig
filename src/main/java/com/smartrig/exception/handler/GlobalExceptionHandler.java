@@ -1,6 +1,7 @@
 package com.smartrig.exception.handler;
 
 import com.smartrig.exception.ModelNotFoundException;
+import com.smartrig.exception.StockNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,6 +61,19 @@ public class GlobalExceptionHandler {
                         HttpStatus.BAD_REQUEST.value(),
                         "입력값을 확인해주세요.",
                         errors
+                ));
+    }
+
+    @ExceptionHandler(StockNotFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> handleStockNotFoundException(
+            StockNotFoundException e) {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponseDTO(
+                        HttpStatus.NOT_FOUND.value(),
+                        e.getMessage(),
+                        null
                 ));
     }
 
