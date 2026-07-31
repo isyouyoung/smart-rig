@@ -26,6 +26,11 @@
                 location.href = "/html/user/userInfo.html";
             })
 
+            // SmartRig로 이동
+            $("#btnSmartRig").on("click", function () { // 직접추가~ 버튼 클릭했을때, 발생되는 이벤트 생성함(onclikc 이벤트와 동일함)
+                location.href = "/index.html";
+            })
+
         })
 
 
@@ -47,12 +52,14 @@
                         $("#btnReg").css("display", "block");
                         $("#btnLogin").css("display", "block");
                         $("#btnUserInfo").css("display", "none");
+                        $("#btnSmartRig").css("display", "none");
 
                     } else { // 로그인 된 경우
                         $("#user").text(loginId + "님이 로그인하였습니다.")
                         $("#btnReg").css("display", "none");
                         $("#btnLogin").css("display", "none");
                         $("#btnUserInfo").css("display", "block");
+                        $("#btnSmartRig").css("display", "block");
                     }
 
                 },
@@ -79,6 +86,9 @@
     <button id="btnReg" type="button" style="display:none">회원가입(로그인 안되면 보이는 버튼)</button>
     <button id="btnLogin" type="button" style="display:none">로그인(로그인 안되면 보이는 버튼)</button>
     <button id="btnUserInfo" type="button" style="display:none">회원정보(로그인 되면 보이는 버튼)</button>
+    <button id="btnSmartRig" type="button" style="display:none">
+        SmartRig 이동
+    </button>
 </div>
 </body>
 </html>
