@@ -7,6 +7,17 @@ $(document).ready(function () {
 
         let modelId = $("#modelId").val();
 
+
+        // Model ID 입력 여부 확인 (빈칸 시 안내 메시지 출력)
+        if (modelId === "") {
+
+            alert("Model ID를 입력하세요.");
+
+            $("#modelId").focus();
+
+            return;
+        }
+
         console.log("입력한 Model ID : " + modelId);
 
 
