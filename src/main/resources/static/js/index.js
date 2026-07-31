@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     // 재고 조회 버튼
@@ -22,20 +21,27 @@ $(document).ready(function () {
 
         }).then(function (json) {
 
-            console.log(json);
+                console.log(json);
 
-            $("#stockModel").text(
-                "Model ID : " + json.modelId
-            );
+                $("#stockModel").text(
+                    "Model ID : " + json.modelId
+                );
 
-            $("#stockQuantity").text(
-                "수량 : " + json.quantity
-            );
+                $("#stockQuantity").text(
+                    "수량 : " + json.quantity
+                );
 
-        });
+            },
+            function (xhr) {
+
+                alert(xhr.responseJSON.message);
+
+                $("#stockModel").text("");
+                $("#stockQuantity").text("");
+
+            });
 
     });
-
 
 
     // 메인 화면 이동
