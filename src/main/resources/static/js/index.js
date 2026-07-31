@@ -6,6 +6,34 @@ $(document).ready(function () {
 
         console.log("조회 버튼 클릭");
 
+        let modelId = $("#modelId").val();
+
+        console.log("입력한 Model ID : " + modelId);
+
+
+        $.ajax({
+
+            url: "/stock/v1/getStockByModelId",
+            type: "GET",
+            data: {
+                modelId: modelId
+            },
+            dataType: "JSON"
+
+        }).then(function (json) {
+
+            console.log(json);
+
+            $("#stockModel").text(
+                "Model ID : " + json.modelId
+            );
+
+            $("#stockQuantity").text(
+                "수량 : " + json.quantity
+            );
+
+        });
+
     });
 
 
