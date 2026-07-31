@@ -1,5 +1,45 @@
 $(document).ready(function () {
 
+    // 로그인 남은 시간 표시 (임시로 5분만 카운트하는 하드코딩임)
+    let remainTime = 300;
+
+    function updateTokenTime(){
+
+        let min = Math.floor(remainTime / 60);
+        let sec = remainTime % 60;
+
+        $("#tokenTime").text(
+            "토큰 남은 시간 : "
+            + min + "분 "
+            + sec + "초"
+        );
+
+    }
+
+    updateTokenTime();
+
+    let tokenTimer = setInterval(function () {
+
+        remainTime--;
+
+        updateTokenTime();
+
+        if (remainTime <= 0) {
+
+            clearInterval(tokenTimer);
+
+            $("#tokenTime").text(
+                "토큰 시간이 만료되었습니다."
+            );
+
+            return;
+
+        }
+
+    }, 1000);
+
+
+
     // 재고 조회 버튼
     $("#btnSearchStock").on("click", function () {
 
