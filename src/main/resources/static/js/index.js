@@ -3,7 +3,7 @@ $(document).ready(function () {
     // 로그인 남은 시간 표시 (임시로 5분만 카운트하는 하드코딩임)
     let remainTime = 300;
 
-    function updateTokenTime(){
+    function updateTokenTime() {
 
         let min = Math.floor(remainTime / 60);
         let sec = remainTime % 60;
@@ -39,7 +39,6 @@ $(document).ready(function () {
     }, 1000);
 
 
-
     // 재고 조회 버튼
     $("#btnSearchStock").on("click", function () {
 
@@ -71,7 +70,6 @@ $(document).ready(function () {
             dataType: "JSON"
 
         }).then(
-
             function (json) {
 
                 console.log(json);
@@ -89,15 +87,27 @@ $(document).ready(function () {
                     },
                     dataType: "JSON"
 
-                }).then(function(model){
+                }).then(
+                    function (model) {
 
-                    console.log(model);
+                        console.log(model);
 
-                    $("#stockModel").text(
-                        "Model : " + model.modelName
-                    );
+                        $("#stockModel").text(
+                            "Model : " + model.modelName
+                        );
 
-                });
+                    },
+
+                    function (xhr) {
+
+                        console.log(xhr);
+
+                        $("#stockModel").text(
+                            "Model : (모델명 조회 실패)"
+                        );
+
+                    }
+                );
 
             },
             function (xhr) {
