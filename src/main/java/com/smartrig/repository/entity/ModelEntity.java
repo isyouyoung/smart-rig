@@ -58,6 +58,12 @@ public class ModelEntity extends BaseEntity {
     @Column(name = "manufacturer", nullable = false, length = 50)
     private String manufacturer;
 
+    @Column(name = "series", nullable = true, length = 50)
+    private String series;
+
+    @Column(name = "generation", nullable = true, length = 20)
+    private String generation;
+
     // DB의 model_name(VARCHAR(100) NOT NULL) 컬럼과 매핑된다.
     // 제품의 모델명(i5-7500, GTX1060 6GB 등)을 저장한다.
     // nullable = false : NULL 값을 허용하지 않는다.
@@ -94,6 +100,14 @@ public class ModelEntity extends BaseEntity {
         return manufacturer;
     }
 
+    public String getSeries() {
+        return series;
+    }
+
+    public String getGeneration() {
+        return generation;
+    }
+
     public String getModelName() {
         return modelName;
     }
@@ -110,9 +124,11 @@ public class ModelEntity extends BaseEntity {
     // JPA Dirty Checking(변경 감지) 방식을 사용하여 데이터를 수정할 때 호출한다.
     // Service 계층에서 조회한 영속(Entity) 객체의 값을 변경하면
     // 트랜잭션 종료 시 JPA가 변경 사항을 감지하여 UPDATE 쿼리를 자동으로 실행한다.
-    public void update(String itemType, String manufacturer, String modelName, String modelNumber, String status) {
+    public void update(String itemType, String manufacturer, String series, String generation, String modelName, String modelNumber, String status) {
         this.itemType = itemType;
         this.manufacturer = manufacturer;
+        this.series = series;
+        this.generation = generation;
         this.modelName = modelName;
         this.modelNumber = modelNumber;
         this.status = status;
