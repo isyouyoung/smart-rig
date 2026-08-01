@@ -70,17 +70,34 @@ $(document).ready(function () {
             },
             dataType: "JSON"
 
-        }).then(function (json) {
+        }).then(
+
+            function (json) {
 
                 console.log(json);
-
-                $("#stockModel").text(
-                    "Model ID : " + json.modelId
-                );
 
                 $("#stockQuantity").text(
                     "수량 : " + json.quantity
                 );
+
+                $.ajax({
+
+                    url: "/model/v1/getModelById",
+                    type: "GET",
+                    data: {
+                        modelId: json.modelId
+                    },
+                    dataType: "JSON"
+
+                }).then(function(model){
+
+                    console.log(model);
+
+                    $("#stockModel").text(
+                        "Model : " + model.modelName
+                    );
+
+                });
 
             },
             function (xhr) {
