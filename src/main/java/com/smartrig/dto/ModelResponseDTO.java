@@ -6,6 +6,8 @@ public record ModelResponseDTO(
         Long modelId,
         String itemType,
         String manufacturer,
+        String series,
+        String generation,
         String modelName,
         String modelNumber,
         String status,

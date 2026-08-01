@@ -101,6 +101,8 @@ public class ModelService implements IModelService {
         entity.update(
                 requestDTO.itemType(),
                 requestDTO.manufacturer(),
+                requestDTO.series(),
+                requestDTO.generation(),
                 requestDTO.modelName(),
                 requestDTO.modelNumber(),
                 requestDTO.status()

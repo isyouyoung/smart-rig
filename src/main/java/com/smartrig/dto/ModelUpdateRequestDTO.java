@@ -14,6 +14,10 @@ public record ModelUpdateRequestDTO(
         @NotBlank(message = "제조사는 필수입니다.")
         String manufacturer,
 
+        String series,
+
+        String generation,
+
         @NotBlank(message = "모델명은 필수입니다.")
         String modelName,
 
