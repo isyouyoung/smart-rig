@@ -129,4 +129,24 @@ $(document).ready(function () {
 
     });
 
+    $("#btnCpu").on("click", function () {
+
+        $("#cpuModal").show();
+
+        $("#modalTitle").text("💻 CPU > 제조사 선택");
+
+        $("#modalContent").html(
+            "<button>Intel</button>" +
+            "<button>AMD</button>"
+        );
+
+    });
+
+
+    $("#btnCloseModal").on("click", function () {
+
+        $("#cpuModal").hide();
+
+    });
+
 });
