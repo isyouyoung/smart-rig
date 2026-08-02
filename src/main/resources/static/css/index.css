@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+
+.top-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+button {
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+.part-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+
+.part-row button {
+    width: 140px;
+    height: 60px;
+    font-size: 18px;
+}
+
+
+#stockModel,
+#stockQuantity {
+    font-size: 18px;
+    font-weight: bold;
+}
