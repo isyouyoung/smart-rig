@@ -121,7 +121,6 @@ $(document).ready(function () {
 
     });
 
-
     // 메인 화면 이동
     $("#btnHome").on("click", function () {
 
@@ -129,23 +128,10 @@ $(document).ready(function () {
 
     });
 
+    // CPU 화면 이동
     $("#btnCpu").on("click", function () {
 
-        $("#cpuModal").show();
-
-        $("#modalTitle").text("💻 CPU > 제조사 선택");
-
-        $("#modalContent").html(
-            "<button>Intel</button>" +
-            "<button>AMD</button>"
-        );
-
-    });
-
-
-    $("#btnCloseModal").on("click", function () {
-
-        $("#cpuModal").hide();
+        location.href = "/html/cpu.html";
 
     });
 
