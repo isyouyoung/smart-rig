@@ -16,6 +16,8 @@ public interface IModelService {
     // Model 전체 목록 조회 반환타입 => List<ModelEntity>(여러 개)
     List<ModelResponseDTO> getModelList();
 
+    List<ModelResponseDTO> getModelListByItemType(String itemType);
+
     // Model 목록중 하나 조회 반환타입 => ModelEntity(하나)
     ModelResponseDTO getModelByName(String modelName);
 

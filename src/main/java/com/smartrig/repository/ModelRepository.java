@@ -3,6 +3,7 @@ package com.smartrig.repository;
 import com.smartrig.repository.entity.ModelEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 // Repository는 DB와 직접 통신하는 계층이다.
@@ -15,5 +16,7 @@ public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
     // modelName으로 MODEL 테이블을 조회한다.
     // 메서드 이름을 기반으로 Spring Data JPA가 SELECT 쿼리를 자동 생성한다.
     Optional<ModelEntity> findByModelName(String modelName);
+
+    List<ModelEntity> findByItemType(String itemType);
 
 }

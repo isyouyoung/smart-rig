@@ -53,6 +53,15 @@ public class ModelService implements IModelService {
                 .toList();
     }
 
+    @Override
+    public List<ModelResponseDTO> getModelListByItemType(String itemType) {
+
+        return modelRepository.findByItemType(itemType)
+                .stream()
+                .map(ModelMapper::toDTO)
+                .toList();
+    }
+
     // modelName으로 특정 Model을 조회하는 기능을 구현하는 메서드이다.
     // 실제 DB 조회는 Repository의 findByModelName()을 통해 수행한다.
     @Override
