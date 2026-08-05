@@ -24,9 +24,9 @@ $(document).ready(function () {
             list.forEach(function(cpu) {
 
                 html +=
-                    "<p>"
+                    "<div class='cpu-item'>"
                     + cpu.modelName
-                    + "</p>";
+                    + "</div>";
 
             });
 
