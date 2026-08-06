@@ -6,11 +6,8 @@ $(document).ready(function () {
 
     $.ajax({
 
-        url: "/model/v1/getModelListByItemType",
+        url: "/model/v1/getCpuListWithStock",
         type: "GET",
-        data: {
-            itemType: "CPU"
-        },
         dataType: "JSON"
 
     }).then(
@@ -26,6 +23,8 @@ $(document).ready(function () {
                 html +=
                     "<div class='cpu-item'>"
                     + cpu.modelName
+                    + " / 재고 : "
+                    + cpu.quantity
                     + "</div>";
 
             });
