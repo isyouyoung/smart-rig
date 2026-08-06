@@ -20,11 +20,30 @@ $(document).ready(function () {
 
             list.forEach(function(cpu) {
 
+                let stockText = "";
+                let stockClass = "";
+
+                if (cpu.quantity === null) {
+
+                    stockText = "재고 미등록";
+                    stockClass = "stock-null";
+
+                } else if (cpu.quantity === 0) {
+
+                    stockText = "품절";
+                    stockClass = "stock-zero";
+
+                } else {
+
+                    stockText = "재고 : " + cpu.quantity + "개";
+                    stockClass = "stock-ok";
+
+                }
+
                 html +=
                     "<div class='cpu-item'>"
                     + cpu.modelName
-                    + " / 재고 : "
-                    + cpu.quantity
+                    + " / <span class='" + stockClass + "'>" + stockText + "</span>"
                     + "</div>";
 
             });

@@ -1,0 +1,4 @@
+/* 재고 상태별 색상 스타일 */
+.stock-null { color: #888888; font-style: italic; } /* 회색: 미등록 */
+.stock-zero { color: #e74c3c; font-weight: bold; }   /* 빨간색: 품절 */
+.stock-ok   { color: #2ecc71; font-weight: bold; }   /* 초록색: 재고 있음 */
