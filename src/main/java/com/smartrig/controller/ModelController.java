@@ -1,5 +1,6 @@
 package com.smartrig.controller;
 
+import com.smartrig.dto.CpuStockResponseDTO;
 import com.smartrig.dto.ModelCreateRequestDTO;
 import com.smartrig.dto.ModelResponseDTO;
 import com.smartrig.dto.ModelUpdateRequestDTO;
@@ -53,6 +54,11 @@ public class ModelController {
 
         return modelService.getModelListByItemType(itemType);
 
+    }
+
+    @GetMapping("/getCpuListWithStock")
+    public List<CpuStockResponseDTO> getCpuListWithStock() {
+        return modelService.getCpuListWithStock();
     }
 
     // GET 방식으로 /model/v1/getModelByName 주소 요청 시 실행된다.

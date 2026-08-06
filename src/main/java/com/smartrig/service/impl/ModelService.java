@@ -1,9 +1,13 @@
 package com.smartrig.service.impl;
 
+import com.smartrig.dto.CpuStockResponseDTO;
 import com.smartrig.dto.ModelCreateRequestDTO;
 import com.smartrig.dto.ModelUpdateRequestDTO;
 import com.smartrig.exception.ModelNotFoundException;
+import com.smartrig.mapper.CpuStockMapper;
+import com.smartrig.repository.StockRepository;
 import com.smartrig.repository.entity.ModelEntity;
+import com.smartrig.repository.entity.StockEntity;
 import com.smartrig.service.IModelService;
 import org.springframework.stereotype.Service;
 import com.smartrig.repository.ModelRepository;
@@ -21,9 +25,14 @@ public class ModelService implements IModelService {
     // DB 접근을 위해 ModelRepository를 주입받는다.
     private final ModelRepository modelRepository;
 
+    private final StockRepository stockRepository;
+
     // 생성자를 통해 ModelRepository를 주입받는다.
-    public ModelService(ModelRepository modelRepository) {
+    public ModelService(ModelRepository modelRepository,
+                        StockRepository stockRepository
+    ) {
         this.modelRepository = modelRepository;
+        this.stockRepository = stockRepository;
     }
 
     // Model 생성 기능을 구현하는 메서드이다.
@@ -59,6 +68,25 @@ public class ModelService implements IModelService {
         return modelRepository.findByItemType(itemType)
                 .stream()
                 .map(ModelMapper::toDTO)
+                .toList();
+    }
+
+    @Override
+    public List<CpuStockResponseDTO> getCpuListWithStock() {
+
+        List<ModelEntity> cpuList =
+                modelRepository.findByItemType("CPU");
+
+        return cpuList.stream()
+                .map(model -> {
+
+                    StockEntity stock =
+                            stockRepository.findByModelId(model.getModelId())
+                                    .orElse(null);
+
+                    return CpuStockMapper.toDTO(model, stock);
+
+                })
                 .toList();
     }
 

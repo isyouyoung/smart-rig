@@ -1,5 +1,6 @@
 package com.smartrig.service;
 
+import com.smartrig.dto.CpuStockResponseDTO;
 import com.smartrig.dto.ModelCreateRequestDTO;
 import com.smartrig.dto.ModelResponseDTO;
 import com.smartrig.dto.ModelUpdateRequestDTO;
@@ -28,4 +29,6 @@ public interface IModelService {
     void deleteModelById(Long modelId);
 
     ModelResponseDTO updateModel(ModelUpdateRequestDTO dto);
+
+    List<CpuStockResponseDTO> getCpuListWithStock();
 }
