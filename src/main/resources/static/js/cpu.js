@@ -2,6 +2,18 @@ $(document).ready(function () {
 
     console.log("CPU 페이지 JS 실행");
 
+    let selectedGeneration = "ALL";
+
+
+
+    $(".generation-btn").on("click", function(){
+
+        selectedGeneration = $(this).data("generation");
+
+        console.log("선택 세대 : " + selectedGeneration);
+
+    });
+
 
 
     $.ajax({
