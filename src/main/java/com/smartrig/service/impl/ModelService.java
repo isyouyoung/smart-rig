@@ -90,6 +90,30 @@ public class ModelService implements IModelService {
                 .toList();
     }
 
+    @Override
+    public List<CpuStockResponseDTO> getCpuListWithStockByGeneration(
+            String generation
+    ) {
+
+        List<ModelEntity> cpuList =
+                modelRepository.findByItemTypeAndGeneration(
+                        "CPU",
+                        generation
+                );
+
+        return cpuList.stream()
+                .map(model -> {
+
+                    StockEntity stock =
+                            stockRepository.findByModelId(model.getModelId())
+                                    .orElse(null);
+
+                    return CpuStockMapper.toDTO(model, stock);
+
+                })
+                .toList();
+    }
+
     // modelName으로 특정 Model을 조회하는 기능을 구현하는 메서드이다.
     // 실제 DB 조회는 Repository의 findByModelName()을 통해 수행한다.
     @Override

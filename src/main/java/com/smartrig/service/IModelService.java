@@ -31,4 +31,8 @@ public interface IModelService {
     ModelResponseDTO updateModel(ModelUpdateRequestDTO dto);
 
     List<CpuStockResponseDTO> getCpuListWithStock();
+
+    List<CpuStockResponseDTO> getCpuListWithStockByGeneration(
+            String generation
+    );
 }

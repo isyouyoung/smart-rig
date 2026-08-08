@@ -17,6 +17,13 @@ public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
     // 메서드 이름을 기반으로 Spring Data JPA가 SELECT 쿼리를 자동 생성한다.
     Optional<ModelEntity> findByModelName(String modelName);
 
+    // CPU, RAM 등 부품 종류로 조회한다
     List<ModelEntity> findByItemType(String itemType);
+
+    // 부품 종류 + 세대로 조회한다
+    List<ModelEntity> findByItemTypeAndGeneration(
+            String itemType,
+            String generation
+    );
 
 }
