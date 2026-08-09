@@ -1,4 +1,36 @@
 /* 재고 상태별 색상 스타일 */
-.stock-null { color: #888888; font-style: italic; } /* 회색: 미등록 */
-.stock-zero { color: #e74c3c; font-weight: bold; }   /* 빨간색: 품절 */
-.stock-ok   { color: #2ecc71; font-weight: bold; }   /* 초록색: 재고 있음 */
+/* 회색: 미등록 */
+.stock-null {
+    color: #888888; font-style: italic;
+}
+
+/* 빨간색: 품절 */
+.stock-zero {
+    color: #e74c3c; font-weight: bold;
+}
+
+/* 초록색: 재고 있음 */
+.stock-ok   {
+    color: #2ecc71; font-weight: bold;
+}
+
+#cpuList {
+    display: flex;
+    gap: 20px;
+}
+
+.cpu-item {
+    width: 150px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.cpu-series {
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 180px;
+    box-sizing: border-box;
+}
