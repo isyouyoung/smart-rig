@@ -30,30 +30,61 @@ $(document).ready(function () {
     function renderCpuList(list) {
         let html = "";
 
+        let seriesList = {
+            "Celeron": [],
+            "Pentium": [],
+            "i3": [],
+            "i5": [],
+            "i7": []
+        };
+
         if (!list || list.length === 0) {
             html = "<div class='cpu-item'>등록된 CPU가 없습니다.</div>";
         } else {
             list.forEach(function (cpu) {
-                let stockText = "";
-                let stockClass = "";
 
-                if (cpu.quantity === null) {
-                    stockText = "재고 미등록";
-                    stockClass = "stock-null";
-                } else if (cpu.quantity === 0) {
-                    stockText = "품절";
-                    stockClass = "stock-zero";
-                } else {
-                    stockText = "재고 : " + cpu.quantity + "개";
-                    stockClass = "stock-ok";
-                }
+                seriesList[cpu.series].push(cpu);
 
-                html +=
-                    "<div class='cpu-item'>"
-                    + cpu.modelName
-                    + " / <span class='" + stockClass + "'>" + stockText + "</span>"
-                    + "</div>";
             });
+
+            console.log("시리즈별 분류:", seriesList);
+
+            Object.keys(seriesList).forEach(function(series) {
+
+                html += "<div class='cpu-series'>";
+
+                html += "<h3>" + series + "</h3>";
+
+                seriesList[series].forEach(function(cpu) {
+
+                    let stockText = "";
+                    let stockClass = "";
+
+                    if (cpu.quantity === null) {
+                        stockText = "재고 미등록";
+                        stockClass = "stock-null";
+                    } else if (cpu.quantity === 0) {
+                        stockText = "품절";
+                        stockClass = "stock-zero";
+                    } else {
+                        stockText = "재고 : " + cpu.quantity + "개";
+                        stockClass = "stock-ok";
+                    }
+
+                    html +=
+                        "<div class='cpu-item'>"
+                        + cpu.modelName
+                        + " / <span class='" + stockClass + "'>"
+                        + stockText
+                        + "</span>"
+                        + "</div>";
+
+                });
+
+                html += "</div>";
+
+            });
+
         }
 
         $("#cpuList").html(html);
