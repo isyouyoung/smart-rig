@@ -34,3 +34,30 @@
     width: 180px;
     box-sizing: border-box;
 }
+
+.cpu-model {
+    font-weight: bold;
+    margin-bottom: 1px;
+}
+
+.cpu-series h3 {
+    margin-top: 0;
+    margin-bottom: 3px;
+}
+
+.cpu-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.cpu-header h1 {
+    margin: 0;
+}
+
+.cpu-header button {
+    position: absolute;
+    left: 0;
+}

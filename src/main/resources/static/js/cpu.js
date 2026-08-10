@@ -73,10 +73,8 @@ $(document).ready(function () {
 
                     html +=
                         "<div class='cpu-item'>"
-                        + cpu.modelName
-                        + " / <span class='" + stockClass + "'>"
-                        + stockText
-                        + "</span>"
+                        + "<div class='cpu-model'>" + cpu.modelName + "</div>"
+                        + "<div class='" + stockClass + "'>" + stockText + "</div>"
                         + "</div>";
 
                 });
