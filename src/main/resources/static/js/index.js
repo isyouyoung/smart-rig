@@ -121,6 +121,17 @@ $(document).ready(function () {
 
     });
 
+    // Enter 키를 누르면 조회 버튼 클릭
+    $("#modelId").on("keydown", function (event) {
+
+        if (event.key === "Enter") {
+
+            $("#btnSearchStock").click();
+
+        }
+
+    });
+
     // 메인 화면 이동
     $("#btnHome").on("click", function () {
 
