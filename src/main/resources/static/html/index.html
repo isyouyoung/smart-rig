@@ -26,6 +26,14 @@
                 location.href = "/html/user/userInfo.html";
             })
 
+            // Enter 키를 누르면 SmartRig 이동 버튼 클릭이 되는 로직
+            // 문서 전체(document)에서 Enter 감지
+            $(document).on("keydown", function (event) {
+                if (event.key === "Enter") {
+                    $("#btnSmartRig").click();
+                }
+            });
+
             // SmartRig로 이동
             $("#btnSmartRig").on("click", function () { // 직접추가~ 버튼 클릭했을때, 발생되는 이벤트 생성함(onclikc 이벤트와 동일함)
                 location.href = "/index.html";
