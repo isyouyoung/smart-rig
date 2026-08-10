@@ -2,6 +2,7 @@ package com.smartrig.controller;
 
 import com.smartrig.dto.StockCreateRequestDTO;
 import com.smartrig.dto.StockResponseDTO;
+import com.smartrig.dto.StockUpdateRequestDTO;
 import com.smartrig.service.IStockService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,13 @@ public class StockController {
             @Valid @RequestBody StockCreateRequestDTO dto) {
 
         return stockService.saveStock(dto);
+    }
+
+    @PutMapping("/updateStock")
+    public StockResponseDTO updateStock(
+            @Valid @RequestBody StockUpdateRequestDTO dto) {
+
+        return stockService.updateStock(dto);
     }
 
 }

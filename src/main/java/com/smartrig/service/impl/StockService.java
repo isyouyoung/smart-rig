@@ -2,6 +2,7 @@ package com.smartrig.service.impl;
 
 import com.smartrig.dto.StockCreateRequestDTO;
 import com.smartrig.dto.StockResponseDTO;
+import com.smartrig.dto.StockUpdateRequestDTO;
 import com.smartrig.exception.StockNotFoundException;
 import com.smartrig.mapper.StockMapper;
 import com.smartrig.repository.StockRepository;
@@ -39,6 +40,21 @@ public class StockService implements IStockService {
         StockEntity saved = stockRepository.save(entity);
 
         return StockMapper.toDTO(saved);
+    }
+
+    @Override
+    @Transactional
+    public StockResponseDTO updateStock(StockUpdateRequestDTO dto) {
+
+        StockEntity entity = stockRepository.findByModelId(dto.modelId())
+                .orElseThrow(() ->
+                        new StockNotFoundException("해당 재고가 없습니다.")
+                );
+
+        entity.updateQuantity(dto.quantity());
+
+        return StockMapper.toDTO(entity);
+
     }
 
 }

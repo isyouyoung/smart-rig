@@ -2,6 +2,7 @@ package com.smartrig.service;
 
 import com.smartrig.dto.StockCreateRequestDTO;
 import com.smartrig.dto.StockResponseDTO;
+import com.smartrig.dto.StockUpdateRequestDTO;
 
 public interface IStockService {
 
@@ -10,5 +11,8 @@ public interface IStockService {
 
     // 재고 생성
     StockResponseDTO saveStock(StockCreateRequestDTO dto);
+
+    // 재고 수정
+    StockResponseDTO updateStock(StockUpdateRequestDTO dto);
 
 }
