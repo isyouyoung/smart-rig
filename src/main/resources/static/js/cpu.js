@@ -30,6 +30,8 @@ $(document).ready(function () {
     function renderCpuList(list) {
         let html = "";
 
+        $("#cpuTitle").text("CPU 목록 (" + list.length + ")");
+
         let seriesList = {
             "Celeron": [],
             "Pentium": [],
@@ -53,7 +55,7 @@ $(document).ready(function () {
 
                 html += "<div class='cpu-series'>";
 
-                html += "<h3>" + series + "</h3>";
+                html += "<h3>" + series + " (" + seriesList[series].length + ")</h3>";
 
                 seriesList[series].forEach(function(cpu) {
 
