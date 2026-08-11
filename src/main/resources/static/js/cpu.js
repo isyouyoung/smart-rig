@@ -37,7 +37,8 @@ $(document).ready(function () {
             "Pentium": [],
             "i3": [],
             "i5": [],
-            "i7": []
+            "i7": [],
+            "i9": []
         };
 
         if (!list || list.length === 0) {
@@ -52,6 +53,10 @@ $(document).ready(function () {
             console.log("시리즈별 분류:", seriesList);
 
             Object.keys(seriesList).forEach(function(series) {
+
+                if (seriesList[series].length === 0) {
+                    return;
+                }
 
                 html += "<div class='cpu-series'>";
 
