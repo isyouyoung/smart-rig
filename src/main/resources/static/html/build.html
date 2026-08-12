@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>SmartRig PC 제작</title>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -12,6 +14,26 @@
 <button type="button" onclick="location.href='/index.html'">
     ← 메인으로
 </button>
+
+<h2>제조사 선택</h2>
+
+<div id="manufacturerMenu">
+
+    <button class="manufacturer-btn" data-manufacturer="Intel">
+        Intel
+    </button>
+
+    <button class="manufacturer-btn" data-manufacturer="AMD">
+        AMD
+    </button>
+
+</div>
+
+<div id="generationMenu">
+
+</div>
+
+<script src="/js/build.js"></script>
 
 </body>
 </html>
