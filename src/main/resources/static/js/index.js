@@ -146,4 +146,11 @@ $(document).ready(function () {
 
     });
 
+    // PC 제작 화면 이동
+    $("#btnBuildPc").on("click", function () {
+
+        location.href = "/html/build.html";
+
+    });
+
 });
