@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    let cpuList = [];
+
     // Intel 선택
     $(".manufacturer-btn").on("click", function () {
 
@@ -17,6 +19,8 @@ $(document).ready(function () {
                 function (list) {
 
                     console.log("Intel CPU 목록 : ", list);
+
+                    cpuList = list;
 
                     let generationSet = new Set();
 
@@ -54,6 +58,36 @@ $(document).ready(function () {
             );
 
         }
+
+    });
+
+    $(document).on("click", ".generation-btn", function () {
+
+        let generation = String($(this).data("generation"));
+
+        console.log("선택 세대 : " + generation);
+
+        let availableCpuList = cpuList.filter(function (cpu) {
+
+            return cpu.generation === generation
+                && cpu.quantity > 0;
+
+        });
+
+        console.log("선택 세대 재고 CPU : ", availableCpuList);
+
+        let html = "<h2>" + generation + "세대 CPU 선택</h2>";
+
+        availableCpuList.forEach(function (cpu) {
+
+            html +=
+                "<button class='cpu-select-btn' data-model-id='" + cpu.modelId + "'>"
+                + cpu.modelName
+                + "</button>";
+
+        });
+
+        $("#generationMenu").html(html);
 
     });
 

@@ -55,3 +55,19 @@ button {
     margin-right: 10px;
     margin-bottom: 10px;
 }
+
+.cpu-select-btn {
+    margin: 5px;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#manufacturerMenu {
+    display: flex;
+    gap: 10px;
+}
+
+#generationMenu button {
+    margin-right: 10px;
+}
