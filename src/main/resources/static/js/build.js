@@ -76,14 +76,44 @@ $(document).ready(function () {
 
         console.log("선택 세대 재고 CPU : ", availableCpuList);
 
-        let html = "<h2>" + generation + "세대 CPU 선택</h2>";
+        let seriesList = {
+            "Celeron": [],
+            "Pentium": [],
+            "i3": [],
+            "i5": [],
+            "i7": [],
+            "i9": []
+        };
 
         availableCpuList.forEach(function (cpu) {
 
-            html +=
-                "<button class='cpu-select-btn' data-model-id='" + cpu.modelId + "'>"
-                + cpu.modelName
-                + "</button>";
+            seriesList[cpu.series].push(cpu);
+
+        });
+
+        console.log("Series별 CPU : ", seriesList);
+
+        let html = "<h2>" + generation + "세대 CPU 선택</h2>";
+
+        Object.keys(seriesList).forEach(function (series) {
+
+            let list = seriesList[series];
+
+            if (list.length === 0) {
+                return;
+            }
+
+            html += "<h3>" + series + "</h3>";
+
+            list.forEach(function (cpu) {
+
+                html +=
+                    "<button type='button' class='cpu-select-btn' data-model-id='" + cpu.modelId + "'>"
+                    + cpu.modelName
+                    + " (" + cpu.quantity + "개)"
+                    + "</button>";
+
+            });
 
         });
 
