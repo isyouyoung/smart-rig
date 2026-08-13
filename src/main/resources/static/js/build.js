@@ -9,16 +9,48 @@ $(document).ready(function () {
 
         if (manufacturer === "Intel") {
 
-            $("#generationMenu").html(
-                "<h2>세대 선택</h2>"
-                + "<button class='generation-btn' data-generation='2'>2세대</button>"
-                + "<button class='generation-btn' data-generation='3'>3세대</button>"
-                + "<button class='generation-btn' data-generation='4'>4세대</button>"
-                + "<button class='generation-btn' data-generation='6'>6세대</button>"
-                + "<button class='generation-btn' data-generation='7'>7세대</button>"
-                + "<button class='generation-btn' data-generation='8'>8세대</button>"
-                + "<button class='generation-btn' data-generation='9'>9세대</button>"
-                + "<button class='generation-btn' data-generation='10'>10세대</button>"
+            $.ajax({
+                url: "/model/v1/getCpuListWithStock",
+                type: "GET",
+                dataType: "JSON"
+            }).then(
+                function (list) {
+
+                    console.log("Intel CPU 목록 : ", list);
+
+                    let generationSet = new Set();
+
+                    list.forEach(function (cpu) {
+
+                        if (cpu.quantity > 0) {
+
+                            generationSet.add(cpu.generation);
+
+                        }
+
+                    });
+
+                    console.log("재고 있는 Intel 세대 : ", generationSet);
+
+                    let html = "<h2>세대 선택</h2>";
+
+                    generationSet.forEach(function (generation) {
+
+                        html +=
+                            "<button class='generation-btn' data-generation='" + generation + "'>"
+                            + generation + "세대"
+                            + "</button>";
+
+                    });
+
+                    $("#generationMenu").html(html);
+
+                },
+                function (xhr) {
+
+                    console.log("Intel CPU 조회 실패 : ", xhr);
+
+                }
             );
 
         }
