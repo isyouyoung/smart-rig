@@ -146,6 +146,13 @@ $(document).ready(function () {
 
     });
 
+    // 판매 PC 화면 이동
+    $("#btnSalePc").on("click", function () {
+
+        location.href = "/html/pc.html";
+
+    });
+
     // PC 제작 화면 이동
     $("#btnBuildPc").on("click", function () {
 

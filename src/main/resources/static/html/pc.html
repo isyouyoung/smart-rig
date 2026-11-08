@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>판매 PC</title>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/cpu.css">
+    <link rel="stylesheet" href="/css/pc.css">
+</head>
+
+<body>
+
+<div class="cpu-header">
+    <button type="button" onclick="location.href='/index.html'">
+        ← 메인으로
+    </button>
+    <h1>SmartRig 판매 PC</h1>
+</div>
+
+<table id="pcTable">
+    <thead>
+    <tr>
+        <th>이름</th>
+        <th>스펙</th>
+        <th>가격</th>
+        <th>상태</th>
+    </tr>
+    </thead>
+    <tbody id="pcList">
+    <!-- pc.js가 여기에 줄을 채워 넣음 -->
+    </tbody>
+</table>
+
+<script src="/js/pc.js"></script>
+
+</body>
+</html>
