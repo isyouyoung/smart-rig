@@ -23,6 +23,7 @@ public class CpuStockMapper {
                 model.getManufacturer(),
                 model.getSeries(),
                 model.getGeneration(),
+                model.getSocket(),
                 model.getModelName(),
                 model.getModelNumber(),
                 quantity

@@ -10,6 +10,8 @@ public record CpuStockResponseDTO(
 
         String generation,
 
+        String socket,
+
         String modelName,
 
         String modelNumber,

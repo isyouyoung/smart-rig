@@ -164,6 +164,7 @@ public class ModelService implements IModelService {
                 requestDTO.manufacturer(),
                 requestDTO.series(),
                 requestDTO.generation(),
+                requestDTO.socket(),
                 requestDTO.modelName(),
                 requestDTO.modelNumber(),
                 requestDTO.status()

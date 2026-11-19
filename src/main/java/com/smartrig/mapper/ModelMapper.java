@@ -16,6 +16,7 @@ public class ModelMapper {
                 .manufacturer(dto.manufacturer())
                 .series(dto.series())
                 .generation(dto.generation())
+                .socket(dto.socket())
                 .modelName(dto.modelName())
                 .modelNumber(dto.modelNumber())
                 .build();
@@ -30,6 +31,7 @@ public class ModelMapper {
                 entity.getManufacturer(),
                 entity.getSeries(),
                 entity.getGeneration(),
+                entity.getSocket(),
                 entity.getModelName(),
                 entity.getModelNumber(),
                 entity.getStatus(),

@@ -120,15 +120,20 @@ public class ModelEntity extends BaseEntity {
         return status;
     }
 
-    // 조회한 Entity의 필드 값만 변경하는 메서드이다.
-    // JPA Dirty Checking(변경 감지) 방식을 사용하여 데이터를 수정할 때 호출한다.
-    // Service 계층에서 조회한 영속(Entity) 객체의 값을 변경하면
-    // 트랜잭션 종료 시 JPA가 변경 사항을 감지하여 UPDATE 쿼리를 자동으로 실행한다.
-    public void update(String itemType, String manufacturer, String series, String generation, String modelName, String modelNumber, String status) {
+    @Column(name = "socket", nullable = true, length = 30)
+    private String socket;
+
+    public String getSocket() {
+        return socket;
+    }
+
+    public void update(String itemType, String manufacturer, String series, String generation,
+                       String socket, String modelName, String modelNumber, String status) {
         this.itemType = itemType;
         this.manufacturer = manufacturer;
         this.series = series;
         this.generation = generation;
+        this.socket = socket;
         this.modelName = modelName;
         this.modelNumber = modelNumber;
         this.status = status;

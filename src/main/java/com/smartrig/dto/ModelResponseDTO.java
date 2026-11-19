@@ -8,6 +8,7 @@ public record ModelResponseDTO(
         String manufacturer,
         String series,
         String generation,
+        String socket,
         String modelName,
         String modelNumber,
         String status,

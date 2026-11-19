@@ -18,6 +18,8 @@ public record ModelUpdateRequestDTO(
 
         String generation,
 
+        String socket,
+
         @NotBlank(message = "모델명은 필수입니다.")
         String modelName,
 
