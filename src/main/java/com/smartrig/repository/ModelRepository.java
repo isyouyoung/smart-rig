@@ -26,4 +26,6 @@ public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
             String generation
     );
 
+    List<ModelEntity> findByItemTypeAndSocket(String itemType, String socket);
+
 }

@@ -35,4 +35,6 @@ public interface IModelService {
     List<CpuStockResponseDTO> getCpuListWithStockByGeneration(
             String generation
     );
+
+    List<CpuStockResponseDTO> getBoardListWithStockBySocket(String socket);
 }
