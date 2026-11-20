@@ -19,7 +19,7 @@ public class CompletePcService implements ICompletePcService {
 
     @Override
     public List<CompletePcResponseDTO> getPcList() {
-        return completePcRepository.findAll(Sort.by(Sort.Direction.DESC, "pcId"))
+        return completePcRepository.findAll(Sort.by(Sort.Direction.ASC, "pcId"))
                 .stream()
                 .map(CompletePcResponseDTO::from)
                 .toList();
