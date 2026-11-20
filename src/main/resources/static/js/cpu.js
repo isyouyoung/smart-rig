@@ -100,6 +100,8 @@ $(document).ready(function () {
     // ==========================================
     $(".generation-btn").on("click", function () {
         selectedGeneration = $(this).data("generation");
+        $(".generation-btn").removeClass("active");
+        $(this).addClass("active");
         console.log("선택 세대 : " + selectedGeneration);
 
         if (selectedGeneration === "ALL") {

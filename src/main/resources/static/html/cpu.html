@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CPU</title>
 
     <script src="/js/jquery-3.6.0.min.js"></script>
@@ -11,54 +12,56 @@
 
 </head>
 
-<body>
+<body class="cpu-page">
 
-<div class="cpu-header">
+<main class="cpu-wrap">
 
-    <button type="button" onclick="location.href='/index.html'">
-        ← 메인으로
-    </button>
+    <div class="cpu-header">
 
-    <h1>SmartRig CPU Inventory</h1>
+        <button type="button" onclick="location.href='/index.html'">
+            ← 메인으로
+        </button>
 
-</div>
+        <h1>SmartRig CPU Inventory</h1>
 
-<h3>제조사 선택</h3>
+    </div>
 
-<div id="manufacturerMenu">
+    <h3 class="cpu-label">제조사 선택</h3>
 
-    <button class="manufacturer-btn" data-manufacturer="ALL">전체</button>
-    <button class="manufacturer-btn" data-manufacturer="Intel">Intel</button>
-    <button class="manufacturer-btn" data-manufacturer="AMD">AMD</button>
+    <div id="manufacturerMenu">
 
-</div>
+        <button class="manufacturer-btn active" data-manufacturer="ALL">전체</button>
+        <button class="manufacturer-btn" data-manufacturer="Intel">Intel</button>
+        <button class="manufacturer-btn" data-manufacturer="AMD">AMD</button>
 
-<h3>세대 선택</h3>
+    </div>
 
-<div id="generationMenu">
+    <h3 class="cpu-label">세대 선택</h3>
 
-    <button class="generation-btn" data-generation="ALL">전체</button>
-    <button class="generation-btn" data-generation="2">2세대</button>
-    <button class="generation-btn" data-generation="3">3세대</button>
-    <button class="generation-btn" data-generation="4">4세대</button>
-    <button class="generation-btn" data-generation="6">6세대</button>
-    <button class="generation-btn" data-generation="7">7세대</button>
-    <button class="generation-btn" data-generation="8">8세대</button>
-    <button class="generation-btn" data-generation="9">9세대</button>
-    <button class="generation-btn" data-generation="10">10세대</button>
-    <button class="generation-btn" data-generation="11">11세대</button>
-    <button class="generation-btn" data-generation="12">12세대</button>
+    <div id="generationMenu">
 
-</div>
+        <button class="generation-btn active" data-generation="ALL">전체</button>
+        <button class="generation-btn" data-generation="2">2세대</button>
+        <button class="generation-btn" data-generation="3">3세대</button>
+        <button class="generation-btn" data-generation="4">4세대</button>
+        <button class="generation-btn" data-generation="6">6세대</button>
+        <button class="generation-btn" data-generation="7">7세대</button>
+        <button class="generation-btn" data-generation="8">8세대</button>
+        <button class="generation-btn" data-generation="9">9세대</button>
+        <button class="generation-btn" data-generation="10">10세대</button>
+        <button class="generation-btn" data-generation="11">11세대</button>
+        <button class="generation-btn" data-generation="12">12세대</button>
 
-<div id="seriesMenu">
+    </div>
 
-</div>
+    <div id="seriesMenu">
 
-<hr>
+    </div>
 
-<h2 id="cpuTitle">CPU 목록</h2>
-<div id="cpuList"></div>
+    <h2 id="cpuTitle">CPU 목록</h2>
+    <div id="cpuList"></div>
+
+</main>
 
 <script src="/js/cpu.js"></script>
 
