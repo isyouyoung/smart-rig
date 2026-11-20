@@ -160,4 +160,9 @@ $(document).ready(function () {
 
     });
 
+    // 메인보드 화면 이동
+    $("#btnMainBoard").on("click", function () {
+        location.href = "/html/board.html";
+    });
+
 });

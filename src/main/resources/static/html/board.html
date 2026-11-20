@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>메인보드</title>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/board.css">
+
+</head>
+
+<body class="board-page">
+
+<main class="board-wrap">
+
+    <div class="board-header">
+        <button type="button" class="board-back" onclick="location.href='/index.html'">
+            ← 메인으로
+        </button>
+        <h1>SmartRig 메인보드 재고</h1>
+    </div>
+
+    <h3 class="board-label">소켓 선택</h3>
+
+    <div id="socketMenu" class="socket-menu">
+        <button type="button" class="socket-btn" data-socket="LGA1155">
+            <span class="socket-name">LGA1155</span>
+            <span class="socket-gen">인텔 2, 3세대</span>
+        </button>
+        <button type="button" class="socket-btn" data-socket="LGA1150">
+            <span class="socket-name">LGA1150</span>
+            <span class="socket-gen">인텔 4세대</span>
+        </button>
+        <button type="button" class="socket-btn active" data-socket="LGA1151">
+            <span class="socket-name">LGA1151</span>
+            <span class="socket-gen">인텔 6, 7세대</span>
+        </button>
+        <button type="button" class="socket-btn" data-socket="LGA1151-v2">
+            <span class="socket-name">LGA1151-v2</span>
+            <span class="socket-gen">인텔 8, 9세대</span>
+        </button>
+    </div>
+
+    <h2 id="boardTitle" class="board-title">메인보드 목록</h2>
+    <div id="boardList"></div>
+
+</main>
+
+<script src="/js/board.js"></script>
+
+</body>
+</html>
