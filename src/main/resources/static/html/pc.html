@@ -20,6 +20,22 @@
     <h1>SmartRig 판매 PC</h1>
 </div>
 
+<div class="pc-actions">
+    <button type="button" id="btnShowPcForm">+ PC 등록</button>
+</div>
+
+<div id="pcForm" style="display:none">
+    <input type="text" id="pcName" placeholder="이름 (예: i5-2500 사무용 PC)" maxlength="100">
+    <textarea id="pcSpecs" placeholder="스펙 (예: i5-2500 / DDR3 8GB / SSD 120GB)"></textarea>
+    <input type="number" id="pcPrice" placeholder="가격 (원)" min="0">
+    <select id="pcStatus">
+        <option value="SALE">판매중</option>
+        <option value="SOLD_OUT">판매완료</option>
+    </select>
+    <button type="button" id="btnSavePc">저장</button>
+    <button type="button" id="btnCancelPc">취소</button>
+</div>
+
 <table id="pcTable">
     <thead>
     <tr>

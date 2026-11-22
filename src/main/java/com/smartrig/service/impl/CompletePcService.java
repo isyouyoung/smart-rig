@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.smartrig.dto.CompletePcCreateRequestDTO;
+import com.smartrig.repository.entity.CompletePcEntity;
 
 import java.util.List;
 
@@ -23,5 +25,22 @@ public class CompletePcService implements ICompletePcService {
                 .stream()
                 .map(CompletePcResponseDTO::from)
                 .toList();
+    }
+
+    @Transactional
+    @Override
+    public CompletePcResponseDTO createPc(CompletePcCreateRequestDTO dto) {
+
+        CompletePcEntity entity =
+                new CompletePcEntity(dto.name(), dto.specs(), dto.price());
+
+        // 상태를 골라서 보냈으면 그 값으로, 안 보냈으면 판매중(SALE) 그대로 둔다.
+        if (dto.status() != null) {
+            entity.changeStatus(dto.status());
+        }
+
+        CompletePcEntity saved = completePcRepository.save(entity);
+
+        return CompletePcResponseDTO.from(saved);
     }
 }
