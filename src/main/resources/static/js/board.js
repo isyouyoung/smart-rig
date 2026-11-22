@@ -67,7 +67,10 @@ $(document).ready(function () {
                     html +=
                         "<div class='board-item'>"
                         + "<div class='board-model'>" + esc(board.modelName) + "</div>"
+                        + "<div class='board-right'>"
                         + "<div class='" + stockClass + "'>" + stockText + "</div>"
+                        + "<button type='button' class='stock-in-btn' data-model-id='" + board.modelId + "'>입고</button>"
+                        + "</div>"
                         + "</div>";
                 });
 
@@ -84,6 +87,48 @@ $(document).ready(function () {
         $(".socket-btn").removeClass("active");
         $(this).addClass("active");
         getBoardList();
+    });
+
+    // 입고 버튼: 수량을 묻고 입고 API를 호출한 뒤 목록을 새로 불러온다.
+    $("#boardList").on("click", ".stock-in-btn", function () {
+        const $btn = $(this);
+        const modelId = $btn.data("model-id");
+        const modelName = $btn.closest(".board-item").find(".board-model").text();
+
+        const input = prompt(modelName + "\n입고 수량을 입력하세요.", "1");
+        if (input === null) {
+            return;   // 취소를 누른 경우
+        }
+
+        const quantity = Number(input);
+        if (!Number.isInteger(quantity) || quantity < 1) {
+            alert("입고 수량은 1 이상의 정수로 입력해 주세요.");
+            return;
+        }
+
+        $btn.prop("disabled", true);   // 두 번 눌러 중복 입고되는 걸 막는다.
+
+        $.ajax({
+            url: "/inventory/v1/stockIn",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ modelId: modelId, quantity: quantity }),
+            success: function () {
+                getBoardList();   // 늘어난 재고 반영
+            },
+            error: function (xhr) {
+                if (xhr.status === 401 || xhr.status === 403) {
+                    alert("로그인이 필요합니다. 로그인해 주세요.");
+                } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                    alert(xhr.responseJSON.message);
+                } else {
+                    alert("입고에 실패했습니다. (" + xhr.status + ")");
+                }
+            },
+            complete: function () {
+                $btn.prop("disabled", false);
+            }
+        });
     });
 
     // 페이지 진입 시 기본 소켓(LGA1151) 목록을 불러온다.

@@ -161,6 +161,42 @@
     font-size: 0.85rem;
 }
 
+/* 재고 표시와 입고 버튼을 한 묶음으로 */
+.board-page .board-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* 입고 버튼 */
+.board-page .stock-in-btn {
+    padding: 3px 12px;
+    border: 1px solid var(--pcb);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--pcb);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.board-page .stock-in-btn:hover {
+    background: var(--pcb);
+    color: #fff;
+}
+
+.board-page .stock-in-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.board-page .stock-in-btn:focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 2px;
+}
+
 .board-page .stock-ok { color: var(--pcb); }
 .board-page .stock-zero { color: var(--zero); }
 .board-page .stock-null { color: var(--none); }

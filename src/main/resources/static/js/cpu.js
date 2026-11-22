@@ -81,7 +81,10 @@ $(document).ready(function () {
                     html +=
                         "<div class='cpu-item'>"
                         + "<div class='cpu-model'>" + cpu.modelName + "</div>"
+                        + "<div class='cpu-right'>"
                         + "<div class='" + stockClass + "'>" + stockText + "</div>"
+                        + "<button type='button' class='stock-in-btn' data-model-id='" + cpu.modelId + "'>입고</button>"
+                        + "</div>"
                         + "</div>";
 
                 });
@@ -116,5 +119,48 @@ $(document).ready(function () {
     // ==========================================
     // 3. 페이지 초기 실행 영역
     // ==========================================
+
+    // 입고 버튼: 수량을 묻고 입고 API를 호출한 뒤 현재 목록을 새로 불러온다.
+    $("#cpuList").on("click", ".stock-in-btn", function () {
+        const $btn = $(this);
+        const modelId = $btn.data("model-id");
+        const modelName = $btn.closest(".cpu-item").find(".cpu-model").text();
+
+        const input = prompt(modelName + "\n입고 수량을 입력하세요.", "1");
+        if (input === null) {
+            return;   // 취소를 누른 경우
+        }
+
+        const quantity = Number(input);
+        if (!Number.isInteger(quantity) || quantity < 1) {
+            alert("입고 수량은 1 이상의 정수로 입력해 주세요.");
+            return;
+        }
+
+        $btn.prop("disabled", true);   // 두 번 눌러 중복 입고되는 걸 막는다.
+
+        $.ajax({
+            url: "/inventory/v1/stockIn",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ modelId: modelId, quantity: quantity }),
+            success: function () {
+                getCpuList();   // 선택한 세대 그대로 재고를 다시 불러온다.
+            },
+            error: function (xhr) {
+                if (xhr.status === 401 || xhr.status === 403) {
+                    alert("로그인이 필요합니다. 로그인해 주세요.");
+                } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                    alert(xhr.responseJSON.message);
+                } else {
+                    alert("입고에 실패했습니다. (" + xhr.status + ")");
+                }
+            },
+            complete: function () {
+                $btn.prop("disabled", false);
+            }
+        });
+    });
+
     getCpuList(); // 페이지 진입 시 전체 목록 최초 로드
 });

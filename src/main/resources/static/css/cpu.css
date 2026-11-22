@@ -104,7 +104,7 @@
 
 .cpu-page #cpuList {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 28px 32px;
     align-items: start;
     margin-top: 18px;
@@ -143,6 +143,42 @@
     border: 1px solid currentColor;
     border-radius: 999px;
     font-size: 0.85rem;
+}
+
+/* 재고 표시와 입고 버튼을 한 묶음으로 */
+.cpu-page .cpu-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* 입고 버튼 */
+.cpu-page .stock-in-btn {
+    padding: 3px 12px;
+    border: 1px solid var(--pcb);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--pcb);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.cpu-page .stock-in-btn:hover {
+    background: var(--pcb);
+    color: #fff;
+}
+
+.cpu-page .stock-in-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.cpu-page .stock-in-btn:focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 2px;
 }
 
 .cpu-page .stock-ok { color: var(--pcb); }
