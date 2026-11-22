@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartRig Inventory</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="/css/index.css">
+
+</head>
+<body>
+<h1>SmartRig Inventory</h1>
+
+<p id="tokenTime"></p>
+
+<div class="top-menu">
+
+    <button id="btnHome" type="button">
+        메인 화면
+    </button>
+
+    <!-- 테스트용 재고 조회 -->
+    <label>Model ID</label>
+    <input type="number" id="modelId">
+
+    <button id="btnSearchStock" type="button">
+        조회
+    </button>
+
+    <button id="btnBuildPc" type="button">
+        PC 제작
+    </button>
+
+    <button id="btnSalePc" type="button">
+        판매 PC
+    </button>
+
+</div>
+
+<p id="stockModel"></p>
+<p id="stockQuantity"></p>
+
+<hr>
+
+<h2>📊 Dashboard</h2>
+
+<p>제작 가능 PC : 준비중</p>
+
+<p>추천 조립 사양 : 준비중</p>
+
+<p>최근 입출고 : 준비중</p>
+
+<hr>
+
+<h2>부품 목록</h2>
+
+<div class="part-row">
+
+    <button id="btnCpu" type="button">
+        CPU
+    </button>
+
+    <button id="btnMainBoard" type="button">
+        MainBoard
+    </button>
+
+</div>
+
+<div class="part-row">
+
+    <button id="btnRam" type="button">
+        RAM
+    </button>
+
+    <button id="btnSsd" type="button">
+        SSD
+    </button>
+
+</div>
+
+<div class="part-row">
+
+    <button id="btnHdd" type="button">
+        HDD
+    </button>
+
+    <button id="btnVga" type="button">
+        VGA
+    </button>
+
+</div>
+
+<div class="part-row">
+
+    <button id="btnPower" type="button">
+        Power
+    </button>
+
+    <button id="btnCase" type="button">
+        Case
+    </button>
+
+</div>
+
+<div class="part-row">
+
+    <button id="btnMonitor" type="button">
+        Monitor
+    </button>
+
+    <button id="btnKeyboard" type="button">
+        Keyboard
+    </button>
+
+</div>
+
+<div class="part-row">
+
+    <button id="btnMouse" type="button">
+        Mouse
+    </button>
+
+    <button id="btnSpeaker" type="button">
+        Speaker
+    </button>
+
+</div>
+
+<hr>
+
+<script src="/js/index.js"></script>
+
+</body>
+</html>

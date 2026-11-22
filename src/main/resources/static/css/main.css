@@ -1,0 +1,221 @@
+/* 메인 재고 화면 전용 스타일. 모든 규칙이 .main-page 안에서만 적용된다. */
+
+.main-page {
+    --bg: #f3f5f0;
+    --ink: #1c2621;
+    --sub: #66706a;
+    --line: #d5dbd2;
+    --pcb: #1f4a38;
+    --copper: #b4631b;
+
+    margin: 0;
+    padding: 24px 20px 56px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+}
+
+.main-page .main-wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+/* 상단 */
+.main-page .main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.main-page .main-header h1 {
+    margin: 0;
+    font-size: 1.7rem;
+}
+
+.main-page .token-time {
+    margin: 0;
+    padding: 3px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--sub);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.main-page .token-time:empty {
+    display: none;
+}
+
+/* 이동 버튼 */
+.main-page .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.main-page .main-nav button {
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+
+.main-page .main-nav button:hover {
+    border-color: var(--pcb);
+}
+
+/* 섹션 제목 */
+.main-page h2 {
+    margin: 36px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--pcb);
+    font-size: 1.1rem;
+}
+
+/* 재고 빠른 조회 */
+.main-page .lookup h2 {
+    margin-top: 28px;
+}
+
+.main-page .lookup-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.main-page .lookup-row label {
+    color: var(--sub);
+    font-size: 0.95rem;
+}
+
+.main-page .lookup-row input {
+    width: 140px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+}
+
+.main-page .lookup-row button {
+    padding: 8px 18px;
+    border: 1px solid var(--pcb);
+    border-radius: 6px;
+    background: var(--pcb);
+    color: #fff;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.main-page .lookup-row button:hover {
+    box-shadow: inset 0 -3px 0 var(--copper);
+}
+
+.main-page #stockModel,
+.main-page #stockQuantity {
+    margin: 10px 0 0;
+    font-weight: 500;
+}
+
+.main-page #stockModel:empty,
+.main-page #stockQuantity:empty {
+    display: none;
+}
+
+/* 대시보드 */
+.main-page .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.main-page .dash-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.main-page .dash-label {
+    color: var(--sub);
+    font-size: 0.85rem;
+}
+
+.main-page .dash-value {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+/* 부품 목록 */
+.main-page .part-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.main-page .part-btn {
+    padding: 18px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+
+.main-page .part-btn:hover {
+    border-color: var(--pcb);
+    box-shadow: inset 0 -3px 0 var(--copper);
+}
+
+/* 아직 화면이 없는 부품: 연결되면 HTML에서 soon 클래스만 지우면 된다 */
+.main-page .part-btn.soon {
+    border-style: dashed;
+    background: transparent;
+    color: var(--sub);
+    font-weight: 500;
+}
+
+.main-page .part-btn.soon::after {
+    content: "준비중";
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.main-page .part-btn.soon:hover {
+    border-color: var(--line);
+    box-shadow: none;
+}
+
+.main-page button:focus-visible,
+.main-page input:focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .main-page .main-nav button,
+    .main-page .part-btn {
+        transition: none;
+    }
+}
