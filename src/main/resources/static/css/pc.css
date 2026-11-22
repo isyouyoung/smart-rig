@@ -1,33 +1,148 @@
-/* 표 전체 */
-#pcTable {
-    width: 100%;
-    border-collapse: collapse;   /* 칸 사이 이중 테두리 없애기 */
-    margin-top: 20px;
+/* 판매 PC 화면 전용 스타일. cpu.css의 색 변수(.cpu-page)를 그대로 사용한다. */
+
+/* + PC 등록 버튼 */
+.cpu-page .pc-actions {
+    margin-top: 24px;
 }
 
-/* 제목 줄과 데이터 칸 */
-#pcTable th,
-#pcTable td {
-    border: 1px solid #ddd;
+.cpu-page #btnShowPcForm,
+.cpu-page #btnSavePc {
+    padding: 8px 18px;
+    border: 1px solid var(--pcb);
+    border-radius: 6px;
+    background: var(--pcb);
+    color: #fff;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.cpu-page #btnShowPcForm:hover,
+.cpu-page #btnSavePc:hover {
+    box-shadow: inset 0 -3px 0 var(--copper);
+}
+
+.cpu-page #btnSavePc:disabled {
+    opacity: 0.6;
+    cursor: default;
+    box-shadow: none;
+}
+
+.cpu-page #btnCancelPc {
+    padding: 8px 18px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.cpu-page #btnCancelPc:hover {
+    border-color: var(--pcb);
+}
+
+/* 등록 폼 */
+.cpu-page #pcForm {
+    display: grid;
+    grid-template-columns: 1fr 160px auto auto;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.cpu-page #pcName,
+.cpu-page #pcSpecs {
+    grid-column: 1 / -1;
+}
+
+.cpu-page #pcForm input,
+.cpu-page #pcForm textarea,
+.cpu-page #pcForm select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+}
+
+.cpu-page #pcSpecs {
+    min-height: 72px;
+    resize: vertical;
+}
+
+.cpu-page #pcForm input:focus-visible,
+.cpu-page #pcForm textarea:focus-visible,
+.cpu-page #pcForm select:focus-visible,
+.cpu-page .pc-actions button:focus-visible,
+.cpu-page #pcForm button:focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 2px;
+}
+
+/* 표 전체 */
+.cpu-page #pcTable {
+    width: 100%;
+    margin-top: 24px;
+    border-collapse: collapse;
+}
+
+/* 제목 줄 */
+.cpu-page #pcTable th {
     padding: 10px 12px;
+    border-bottom: 2px solid var(--pcb);
+    color: var(--sub);
+    font-size: 0.85rem;
+    font-weight: 600;
     text-align: left;
 }
 
-#pcTable th {
-    background-color: #f5f5f5;
+/* 데이터 칸 */
+.cpu-page #pcTable td {
+    padding: 12px;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    text-align: left;
+    vertical-align: top;
+}
+
+.cpu-page #pcTable td:nth-child(1) {
+    font-weight: 600;
+}
+
+.cpu-page #pcTable td:nth-child(2) {
+    color: var(--sub);
 }
 
 /* 가격, 상태 칸은 줄바꿈 없이 */
-#pcTable td:nth-child(3),
-#pcTable td:nth-child(4) {
+.cpu-page #pcTable td:nth-child(3),
+.cpu-page #pcTable td:nth-child(4) {
     white-space: nowrap;
 }
 
-/* 품절 줄: 흐리게 + 취소선 */
-#pcTable tr.sold-out td {
-    color: #aaa;
+.cpu-page #pcTable td:nth-child(4) {
+    color: var(--pcb);
+    font-weight: 600;
 }
 
-#pcTable tr.sold-out td:nth-child(3) {
+/* 판매완료 줄: 흐리게 + 가격 취소선 */
+.cpu-page #pcTable tr.sold-out td {
+    color: var(--none);
+    background: transparent;
+}
+
+.cpu-page #pcTable tr.sold-out td:nth-child(3) {
     text-decoration: line-through;
+}
+
+@media (max-width: 640px) {
+    .cpu-page #pcForm {
+        grid-template-columns: 1fr 1fr;
+    }
 }
